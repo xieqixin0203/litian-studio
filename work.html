@@ -71,12 +71,23 @@
   .work-hero-slide.active{opacity:1;}
   .work-hero::before{
     content:"";position:absolute;inset:0;z-index:1;
-    background:linear-gradient(180deg,rgba(0,0,0,.25) 0%,transparent 35%,transparent 55%,rgba(0,0,0,.35) 100%);
+    background:linear-gradient(180deg,rgba(0,0,0,.25) 0%,transparent 35%,transparent 55%,rgba(0,0,0,.55) 100%);
+  }
+  /* 标语放在封面下半部分 */
+  .work-hero-tagline{
+    position:absolute;bottom:14%;left:0;right:0;z-index:2;
+    text-align:center;
+    font-size:clamp(.78rem,1.5vw,1rem);
+    letter-spacing:.22em;
+    color:#ffffff;
+    text-shadow:0 2px 12px rgba(0,0,0,.55);
+    font-weight:300;
+    padding:0 20px;
   }
 
   /* 精选作品文字，移到封面下方的白色区域 */
   .work-head{
-    padding:clamp(50px,7vw,80px) 0 0;
+    padding:clamp(40px,6vw,70px) 0 0;
   }
   .work-head h1{
     font-size:clamp(1.3rem,2.4vw,1.9rem);font-weight:400;
@@ -166,6 +177,7 @@
 <div class="work-hero-slide" data-bg="https://cdn.jsdelivr.net/gh/xieqixin0203/litian-studio@main/images/hero-05.webp"></div>
 
   </div>
+  <div class="work-hero-tagline">尊重本土语境，呈现新时代建筑语言</div>
 </div>
 
 <div class="work-head">
