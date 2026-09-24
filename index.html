@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>立田工作室 LITIAN STUDIO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{height:100%;overflow:hidden;background:#111;}
+  body{
+    font-family:"Fira Sans","PingFang SC","Microsoft YaHei",sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .entry{
+    position:relative;width:100%;height:100vh;height:100svh;overflow:hidden;
+    display:flex;align-items:center;justify-content:center;
+    text-decoration:none;
+  }
+  .entry-bg{
+    position:absolute;inset:0;z-index:0;
+    background-image:url('images/entry-cover.webp');
+    background-size:cover;background-position:center;
+    opacity:0.15;
+    animation:bgFadeIn 3.5s ease-out forwards;
+  }
+  @keyframes bgFadeIn{
+    from{opacity:0.15;}
+    to{opacity:1;}
+  }
+  .entry::before{
+    content:"";position:absolute;inset:0;z-index:1;
+    background:rgba(0,0,0,.35);
+  }
+  .entry-content{
+    position:relative;z-index:2;
+    padding:0 20px;
+    text-align:center;
+    transition:transform .6s cubic-bezier(.2,.8,.2,1),opacity .4s;
+  }
+  .entry:hover .entry-content{transform:scale(1.03);opacity:.92;}
+  .entry-title{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-decoration:none;
+  }
+  .entry-title .cn{
+    font-size:clamp(1.8rem,5vw,3.6rem);
+    font-weight:600;letter-spacing:.06em;line-height:1.15;
+    color:#ffffff;
+    text-shadow:0 2px 20px rgba(0,0,0,.45);
+  }
+  .entry-title .en{
+    font-size:clamp(.72rem,1.5vw,.95rem);
+    font-weight:400;letter-spacing:.38em;
+    color:rgba(255,255,255,.82);
+    text-shadow:0 1px 8px rgba(0,0,0,.4);
+    margin-top:12px;
+    white-space:nowrap;
+  }
+  .entry-sub{
+    margin-top:20px;
+    font-size:clamp(.6rem,1.2vw,.68rem);
+    letter-spacing:.18em;
+    color:rgba(255,255,255,.35);
+    text-shadow:0 1px 6px rgba(0,0,0,.4);
+    font-weight:300;
+    text-align:center;
+  }
+</style>
+</head>
+<body>
+<a class="entry" href="work.html">
+  <div class="entry-bg"></div>
+  <div class="entry-content">
+    <div class="entry-title">
+      <span class="cn">立田工作室</span>
+      <span class="en">LITIAN STUDIO</span>
+    </div>
+    <div class="entry-sub">SDADI 顺德建筑设计院股份有限公司</div>
+  </div>
+</a>
+</body>
+</html>

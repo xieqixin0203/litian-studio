@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>精选作品 — 立田工作室 LITIAN STUDIO</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.14.3/simple-lightbox.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff;--fg:#000000;--fg-dim:#333333;
+    --line:#e5e5e5;--maxw:1156px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+  body{
+    background:var(--bg);color:var(--fg);line-height:1.5;
+    font-family:"Fira Sans","PingFang SC","Microsoft YaHei",sans-serif;
+    -webkit-font-smoothing:antialiased;font-weight:300;
+  }
+  img{display:block;max-width:100%;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{width:min(100% - 40px,var(--maxw));margin-inline:auto;}
+
+  header{
+    position:fixed;inset:0 0 auto 0;z-index:50;
+    background:transparent;
+    border-bottom:1px solid transparent;
+    transition:background .4s ease, border-color .4s ease;
+  }
+  header.scrolled{
+    background:rgba(255,255,255,.92);
+    border-bottom:1px solid var(--line);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;height:80px;}
+  .logo{font-weight:500;font-size:1.15rem;display:flex;align-items:center;gap:12px;}
+  .logo .logo-cn{font-weight:600;line-height:1.1;color:#ffffff;transition:color .4s;}
+  .logo .logo-cn .cn-a,.logo .logo-cn .cn-b{display:inline;}
+  .logo .logo-en{font-size:.8rem;letter-spacing:.28em;color:rgba(255,255,255,.8);font-weight:400;text-transform:uppercase;transition:color .4s;}
+  header.scrolled .logo .logo-cn{color:var(--fg);}
+  header.scrolled .logo .logo-en{color:var(--fg-dim);}
+
+  .nav-links{display:flex;gap:28px;font-size:.84rem;font-weight:400;}
+  .nav-links a{color:rgba(255,255,255,.85);transition:color .4s;}
+  .nav-links a:hover{color:#ffffff;}
+  header.scrolled .nav-links a{color:var(--fg-dim);}
+  header.scrolled .nav-links a:hover{color:var(--fg);}
+
+  @media(max-width:768px){
+    .nav{flex-direction:column;align-items:stretch;height:auto;padding:12px 0 10px;gap:10px;}
+    .logo{width:100%;justify-content:space-between;font-size:1.05rem;}
+    .logo .logo-cn .cn-a,.logo .logo-cn .cn-b{display:block;}
+    .logo .logo-cn{line-height:1.05;}
+    .logo .logo-en{font-size:.72rem;letter-spacing:.24em;}
+    .nav-links{gap:20px;font-size:.78rem;}
+  }
+
+  .work-hero{
+    position:relative;width:100%;height:62vh;min-height:380px;
+    overflow:hidden;background:#111;
+  }
+  .work-hero-slides{position:absolute;inset:0;}
+  .work-hero-slide{
+    position:absolute;inset:0;
+    background-size:cover;background-position:center;
+    opacity:0;transition:opacity 1.8s ease-in-out;
+  }
+  .work-hero-slide.active{opacity:1;}
+  .work-hero::before{
+    content:"";position:absolute;inset:0;z-index:1;
+    background:linear-gradient(180deg,rgba(0,0,0,.25) 0%,transparent 35%,transparent 55%,rgba(0,0,0,.55) 100%);
+  }
+  .work-hero-title{
+    position:absolute;bottom:44px;left:0;right:0;z-index:2;
+    text-align:center;color:#fff;
+  }
+  .work-hero-title h1{
+    font-size:clamp(1.3rem,2.4vw,1.9rem);font-weight:400;
+    letter-spacing:.02em;margin-bottom:8px;
+  }
+  .work-hero-title p{
+    font-size:.82rem;color:rgba(255,255,255,.75);
+  }
+
+  .section{padding:clamp(50px,8vw,100px) 0;}
+  .sec-head{margin-bottom:50px;}
+  .sec-head h2{font-size:clamp(1.2rem,2.4vw,1.7rem);font-weight:400;letter-spacing:-.01em;margin-bottom:10px;}
+  .sec-head p{color:var(--fg-dim);font-size:.88rem;font-weight:300;}
+
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:60px 40px;}
+  @media(max-width:768px){.grid{grid-template-columns:1fr;gap:40px;}}
+
+  .card{background:var(--bg);}
+  .card:hover .thumb img{transform:scale(1.03);filter:brightness(125%);}
+  .thumb{
+    aspect-ratio:4/3;overflow:hidden;background:#f0f0f0;
+    cursor:pointer;position:relative;
+  }
+  .thumb img{
+    width:100%;height:100%;object-fit:cover;
+    transition:transform .8s cubic-bezier(.2,.8,.2,1),filter .8s;
+    will-change:transform,filter;
+  }
+  .meta{padding:20px 0;}
+  .meta .cat{font-size:.75rem;color:var(--fg-dim);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;font-weight:400;}
+  .meta h3{font-size:1.1rem;font-weight:500;margin-bottom:4px;letter-spacing:-.01em;}
+  .meta .title-en{font-size:.78rem;color:var(--fg-dim);letter-spacing:.06em;margin:0 0 6px;font-weight:300;text-transform:uppercase;}
+  .meta .award{font-size:.78rem;color:#b8860b;letter-spacing:.02em;margin-bottom:8px;font-weight:400;}
+  .meta .sum{font-size:.85rem;color:var(--fg-dim);line-height:1.6;font-weight:300;}
+
+  .about{background:#f8f8f8;border-block:1px solid var(--line);}
+  .about-grid{display:grid;grid-template-columns:1fr;gap:40px;}
+  @media(min-width:820px){.about-grid{grid-template-columns:1.2fr 1fr;gap:60px;}}
+  .about-grid p{color:var(--fg-dim);margin-bottom:16px;font-weight:300;}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .stat b{display:block;font-size:clamp(1.5rem,3vw,2.2rem);color:var(--fg);font-weight:400;line-height:1.2;}
+  .stat small{color:var(--fg-dim);font-size:.7rem;letter-spacing:.08em;font-weight:300;display:block;margin-top:4px;}
+
+  .services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:24px;}
+  .service h4{font-size:.95rem;font-weight:500;margin-bottom:8px;}
+  .service p{font-size:.8rem;color:var(--fg-dim);font-weight:300;}
+
+  .contact{text-align:center;border-top:1px solid var(--line);}
+  .btn{
+    display:inline-block;padding:14px 36px;border:1px solid var(--fg);
+    background:transparent;color:var(--fg);font-weight:400;font-size:.9rem;
+    transition:all .3s;
+  }
+  .btn:hover{background:var(--fg);color:var(--bg);}
+
+  footer{padding:40px 0;border-top:1px solid var(--line);color:var(--fg-dim);font-size:.75rem;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-weight:300;}
+
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1);}
+  .reveal.visible{opacity:1;transform:none;}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;}html{scroll-behavior:auto;}}
+</style>
+</head>
+<body>
+<header id="siteHeader">
+  <nav class="nav wrap">
+    <a class="logo" href="index.html">
+      <span class="logo-cn"><span class="cn-a">立田</span><span class="cn-b">工作室</span></span>
+      <span class="logo-en">LITIAN STUDIO</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">首页</a>
+      <a href="#work">作品</a>
+      <a href="#about">关于</a>
+      <a href="#services">服务</a>
+      <a href="#contact">联系</a>
+    </div>
+  </nav>
+</header>
+
+<div class="work-hero">
+  <div class="work-hero-slides">
+    <div class="work-hero-slide active" style="background-image:url('images/hero-01.webp')"></div>
+<div class="work-hero-slide" data-bg="images/hero-02.webp"></div>
+<div class="work-hero-slide" data-bg="images/hero-03.webp"></div>
+<div class="work-hero-slide" data-bg="images/hero-04.webp"></div>
+<div class="work-hero-slide" data-bg="images/hero-05.webp"></div>
+
+  </div>
+  <div class="work-hero-title">
+    <h1>精选作品</h1>
+    <p>从概念方案到施工落地，专注设计在实际项目中的细节与效果</p>
+  </div>
+</div>
+
+<section id="work" class="section">
+  <div class="wrap">
+    <div class="grid">
+      <div class="card reveal">
+  <div class="thumb">
+    <a href="images/p01-01-desktop.webp" class="gallery-link" rel="gallery-申菱二基地" data-mobile="images/p01-01-mobile.webp" data-desktop="images/p01-01-desktop.webp"><img src="images/p01-01-thumb.webp" alt="申菱二基地" loading="lazy" decoding="async"></a><a href="images/p01-02-desktop.webp" class="gallery-link" rel="gallery-申菱二基地" data-mobile="images/p01-02-mobile.webp" data-desktop="images/p01-02-desktop.webp" style="display:none"></a><a href="images/p01-03-desktop.webp" class="gallery-link" rel="gallery-申菱二基地" data-mobile="images/p01-03-mobile.webp" data-desktop="images/p01-03-desktop.webp" style="display:none"></a><a href="images/p01-04-desktop.webp" class="gallery-link" rel="gallery-申菱二基地" data-mobile="images/p01-04-mobile.webp" data-desktop="images/p01-04-desktop.webp" style="display:none"></a><a href="images/p01-05-desktop.webp" class="gallery-link" rel="gallery-申菱二基地" data-mobile="images/p01-05-mobile.webp" data-desktop="images/p01-05-desktop.webp" style="display:none"></a><a href="images/p01-06-desktop.webp" class="gallery-link" rel="gallery-申菱二基地" data-mobile="images/p01-06-mobile.webp" data-desktop="images/p01-06-desktop.webp" style="display:none"></a><a href="images/p01-07-desktop.webp" class="gallery-link" rel="gallery-申菱二基地" data-mobile="images/p01-07-mobile.webp" data-desktop="images/p01-07-desktop.webp" style="display:none"></a><a href="images/p01-08-desktop.webp" class="gallery-link" rel="gallery-申菱二基地" data-mobile="images/p01-08-mobile.webp" data-desktop="images/p01-08-desktop.webp" style="display:none"></a><a href="images/p01-09-desktop.webp" class="gallery-link" rel="gallery-申菱二基地" data-mobile="images/p01-09-mobile.webp" data-desktop="images/p01-09-desktop.webp" style="display:none"></a><a href="images/p01-10-desktop.webp" class="gallery-link" rel="gallery-申菱二基地" data-mobile="images/p01-10-mobile.webp" data-desktop="images/p01-10-desktop.webp" style="display:none"></a>
+  </div>
+  <div class="meta">
+    <div class="cat">办公 | 产业园区 · 已建成</div>
+    <h3>申菱二基地</h3>
+    <div class="title-en">Shenling BASE-II</div>
+    <div class="award">🏆 零能耗建筑，LEED铂金级建筑，广东省土木工程詹天佑故乡杯奖项</div>
+    <div class="sum">以绿色工厂与零碳园区为目标，整合建筑、结构、幕墙、室内与景观一体化设计，打造LEED铂金级、零能耗的产业园区。</div>
+  </div>
+</div>
+<div class="card reveal">
+  <div class="thumb">
+    <a href="images/p02-01-desktop.webp" class="gallery-link" rel="gallery-申菱总部改造" data-mobile="images/p02-01-mobile.webp" data-desktop="images/p02-01-desktop.webp"><img src="images/p02-01-thumb.webp" alt="申菱总部改造" loading="lazy" decoding="async"></a><a href="images/p02-02-desktop.webp" class="gallery-link" rel="gallery-申菱总部改造" data-mobile="images/p02-02-mobile.webp" data-desktop="images/p02-02-desktop.webp" style="display:none"></a><a href="images/p02-03-desktop.webp" class="gallery-link" rel="gallery-申菱总部改造" data-mobile="images/p02-03-mobile.webp" data-desktop="images/p02-03-desktop.webp" style="display:none"></a><a href="images/p02-04-desktop.webp" class="gallery-link" rel="gallery-申菱总部改造" data-mobile="images/p02-04-mobile.webp" data-desktop="images/p02-04-desktop.webp" style="display:none"></a><a href="images/p02-05-desktop.webp" class="gallery-link" rel="gallery-申菱总部改造" data-mobile="images/p02-05-mobile.webp" data-desktop="images/p02-05-desktop.webp" style="display:none"></a><a href="images/p02-06-desktop.webp" class="gallery-link" rel="gallery-申菱总部改造" data-mobile="images/p02-06-mobile.webp" data-desktop="images/p02-06-desktop.webp" style="display:none"></a><a href="images/p02-07-desktop.webp" class="gallery-link" rel="gallery-申菱总部改造" data-mobile="images/p02-07-mobile.webp" data-desktop="images/p02-07-desktop.webp" style="display:none"></a><a href="images/p02-08-desktop.webp" class="gallery-link" rel="gallery-申菱总部改造" data-mobile="images/p02-08-mobile.webp" data-desktop="images/p02-08-desktop.webp" style="display:none"></a>
+  </div>
+  <div class="meta">
+    <div class="cat">办公 | 产业园区 · 在建中</div>
+    <h3>申菱总部改造</h3>
+    <div class="title-en">Shenling BASE-I Headquarter Renovation</div>
+    
+    <div class="sum">申菱总部整体改造，打造科技、绿色、零碳新总部园区</div>
+  </div>
+</div>
+<div class="card reveal">
+  <div class="thumb">
+    <a href="images/p03-01-desktop.webp" class="gallery-link" rel="gallery-申菱三基地" data-mobile="images/p03-01-mobile.webp" data-desktop="images/p03-01-desktop.webp"><img src="images/p03-01-thumb.webp" alt="申菱三基地" loading="lazy" decoding="async"></a><a href="images/p03-02-desktop.webp" class="gallery-link" rel="gallery-申菱三基地" data-mobile="images/p03-02-mobile.webp" data-desktop="images/p03-02-desktop.webp" style="display:none"></a><a href="images/p03-03-desktop.webp" class="gallery-link" rel="gallery-申菱三基地" data-mobile="images/p03-03-mobile.webp" data-desktop="images/p03-03-desktop.webp" style="display:none"></a><a href="images/p03-04-desktop.webp" class="gallery-link" rel="gallery-申菱三基地" data-mobile="images/p03-04-mobile.webp" data-desktop="images/p03-04-desktop.webp" style="display:none"></a>
+  </div>
+  <div class="meta">
+    <div class="cat">办公 | 产业园区 · 已建成</div>
+    <h3>申菱三基地</h3>
+    <div class="title-en">Shenling BASE-III</div>
+    <div class="award">🏆 LEED铂金级建筑</div>
+    <div class="sum">申菱环境第一座LEED铂金级、零能耗的产业园区。</div>
+  </div>
+</div>
+<div class="card reveal">
+  <div class="thumb">
+    <a href="images/p04-01-desktop.webp" class="gallery-link" rel="gallery-申菱高州基地" data-mobile="images/p04-01-mobile.webp" data-desktop="images/p04-01-desktop.webp"><img src="images/p04-01-thumb.webp" alt="申菱高州基地" loading="lazy" decoding="async"></a><a href="images/p04-02-desktop.webp" class="gallery-link" rel="gallery-申菱高州基地" data-mobile="images/p04-02-mobile.webp" data-desktop="images/p04-02-desktop.webp" style="display:none"></a><a href="images/p04-03-desktop.webp" class="gallery-link" rel="gallery-申菱高州基地" data-mobile="images/p04-03-mobile.webp" data-desktop="images/p04-03-desktop.webp" style="display:none"></a><a href="images/p04-04-desktop.webp" class="gallery-link" rel="gallery-申菱高州基地" data-mobile="images/p04-04-mobile.webp" data-desktop="images/p04-04-desktop.webp" style="display:none"></a><a href="images/p04-05-desktop.webp" class="gallery-link" rel="gallery-申菱高州基地" data-mobile="images/p04-05-mobile.webp" data-desktop="images/p04-05-desktop.webp" style="display:none"></a><a href="images/p04-06-desktop.webp" class="gallery-link" rel="gallery-申菱高州基地" data-mobile="images/p04-06-mobile.webp" data-desktop="images/p04-06-desktop.webp" style="display:none"></a>
+  </div>
+  <div class="meta">
+    <div class="cat">办公 | 产业园区 · 已建成</div>
+    <h3>申菱高州基地</h3>
+    <div class="title-en">Shenling Gaozhou BASE</div>
+    
+    <div class="sum"></div>
+  </div>
+</div>
+<div class="card reveal">
+  <div class="thumb">
+    <a href="images/p05-01-desktop.webp" class="gallery-link" rel="gallery-申菱四基地" data-mobile="images/p05-01-mobile.webp" data-desktop="images/p05-01-desktop.webp"><img src="images/p05-01-thumb.webp" alt="申菱四基地" loading="lazy" decoding="async"></a><a href="images/p05-02-desktop.webp" class="gallery-link" rel="gallery-申菱四基地" data-mobile="images/p05-02-mobile.webp" data-desktop="images/p05-02-desktop.webp" style="display:none"></a><a href="images/p05-03-desktop.webp" class="gallery-link" rel="gallery-申菱四基地" data-mobile="images/p05-03-mobile.webp" data-desktop="images/p05-03-desktop.webp" style="display:none"></a><a href="images/p05-04-desktop.webp" class="gallery-link" rel="gallery-申菱四基地" data-mobile="images/p05-04-mobile.webp" data-desktop="images/p05-04-desktop.webp" style="display:none"></a>
+  </div>
+  <div class="meta">
+    <div class="cat">办公 | 产业园区 · 在建中</div>
+    <h3>申菱四基地</h3>
+    <div class="title-en">Shenling BASE-Ⅳ</div>
+    
+    <div class="sum">紧凑型复合功能产业园区。</div>
+  </div>
+</div>
+<div class="card reveal">
+  <div class="thumb">
+    <a href="images/p06-01-desktop.webp" class="gallery-link" rel="gallery-屏荣食品总部基地" data-mobile="images/p06-01-mobile.webp" data-desktop="images/p06-01-desktop.webp"><img src="images/p06-01-thumb.webp" alt="屏荣食品总部基地" loading="lazy" decoding="async"></a><a href="images/p06-02-desktop.webp" class="gallery-link" rel="gallery-屏荣食品总部基地" data-mobile="images/p06-02-mobile.webp" data-desktop="images/p06-02-desktop.webp" style="display:none"></a><a href="images/p06-03-desktop.webp" class="gallery-link" rel="gallery-屏荣食品总部基地" data-mobile="images/p06-03-mobile.webp" data-desktop="images/p06-03-desktop.webp" style="display:none"></a><a href="images/p06-04-desktop.webp" class="gallery-link" rel="gallery-屏荣食品总部基地" data-mobile="images/p06-04-mobile.webp" data-desktop="images/p06-04-desktop.webp" style="display:none"></a><a href="images/p06-05-desktop.webp" class="gallery-link" rel="gallery-屏荣食品总部基地" data-mobile="images/p06-05-mobile.webp" data-desktop="images/p06-05-desktop.webp" style="display:none"></a><a href="images/p06-06-desktop.webp" class="gallery-link" rel="gallery-屏荣食品总部基地" data-mobile="images/p06-06-mobile.webp" data-desktop="images/p06-06-desktop.webp" style="display:none"></a>
+  </div>
+  <div class="meta">
+    <div class="cat">办公 | 产业园区 · 在建中</div>
+    <h3>屏荣食品总部基地</h3>
+    <div class="title-en">Pingroun Headquarter</div>
+    
+    <div class="sum">屏荣食品全球总部基地</div>
+  </div>
+</div>
+<div class="card reveal">
+  <div class="thumb">
+    <a href="images/p07-01-desktop.webp" class="gallery-link" rel="gallery-富信科技热电产业园" data-mobile="images/p07-01-mobile.webp" data-desktop="images/p07-01-desktop.webp"><img src="images/p07-01-thumb.webp" alt="富信科技园区" loading="lazy" decoding="async"></a><a href="images/p07-02-desktop.webp" class="gallery-link" rel="gallery-富信科技热电产业园" data-mobile="images/p07-02-mobile.webp" data-desktop="images/p07-02-desktop.webp" style="display:none"></a><a href="images/p07-03-desktop.webp" class="gallery-link" rel="gallery-富信科技热电产业园" data-mobile="images/p07-03-mobile.webp" data-desktop="images/p07-03-desktop.webp" style="display:none"></a><a href="images/p07-04-desktop.webp" class="gallery-link" rel="gallery-富信科技热电产业园" data-mobile="images/p07-04-mobile.webp" data-desktop="images/p07-04-desktop.webp" style="display:none"></a><a href="images/p07-05-desktop.webp" class="gallery-link" rel="gallery-富信科技热电产业园" data-mobile="images/p07-05-mobile.webp" data-desktop="images/p07-05-desktop.webp" style="display:none"></a>
+  </div>
+  <div class="meta">
+    <div class="cat">办公 | 产业园区 · 已建成</div>
+    <h3>富信科技园区</h3>
+    <div class="title-en">Fuxin BASE-II</div>
+    
+    <div class="sum">富信科技新一代产业园区。</div>
+  </div>
+</div>
+<div class="card reveal">
+  <div class="thumb">
+    <a href="images/p08-01-desktop.webp" class="gallery-link" rel="gallery-沃特检验集团总部" data-mobile="images/p08-01-mobile.webp" data-desktop="images/p08-01-desktop.webp"><img src="images/p08-01-thumb.webp" alt="沃特检验集团总部" loading="lazy" decoding="async"></a><a href="images/p08-02-desktop.webp" class="gallery-link" rel="gallery-沃特检验集团总部" data-mobile="images/p08-02-mobile.webp" data-desktop="images/p08-02-desktop.webp" style="display:none"></a><a href="images/p08-03-desktop.webp" class="gallery-link" rel="gallery-沃特检验集团总部" data-mobile="images/p08-03-mobile.webp" data-desktop="images/p08-03-desktop.webp" style="display:none"></a>
+  </div>
+  <div class="meta">
+    <div class="cat">办公 | 产业园区 · 在建中</div>
+    <h3>沃特检验集团总部</h3>
+    <div class="title-en">WALTEK Headquarter</div>
+    
+    <div class="sum">沃特检验集团总部</div>
+  </div>
+</div>
+<div class="card reveal">
+  <div class="thumb">
+    <a href="images/p09-01-desktop.webp" class="gallery-link" rel="gallery-艺华园" data-mobile="images/p09-01-mobile.webp" data-desktop="images/p09-01-desktop.webp"><img src="images/p09-01-thumb.webp" alt="艺华园" loading="lazy" decoding="async"></a><a href="images/p09-02-desktop.webp" class="gallery-link" rel="gallery-艺华园" data-mobile="images/p09-02-mobile.webp" data-desktop="images/p09-02-desktop.webp" style="display:none"></a><a href="images/p09-03-desktop.webp" class="gallery-link" rel="gallery-艺华园" data-mobile="images/p09-03-mobile.webp" data-desktop="images/p09-03-desktop.webp" style="display:none"></a><a href="images/p09-04-desktop.webp" class="gallery-link" rel="gallery-艺华园" data-mobile="images/p09-04-mobile.webp" data-desktop="images/p09-04-desktop.webp" style="display:none"></a><a href="images/p09-05-desktop.webp" class="gallery-link" rel="gallery-艺华园" data-mobile="images/p09-05-mobile.webp" data-desktop="images/p09-05-desktop.webp" style="display:none"></a><a href="images/p09-06-desktop.webp" class="gallery-link" rel="gallery-艺华园" data-mobile="images/p09-06-mobile.webp" data-desktop="images/p09-06-desktop.webp" style="display:none"></a><a href="images/p09-07-desktop.webp" class="gallery-link" rel="gallery-艺华园" data-mobile="images/p09-07-mobile.webp" data-desktop="images/p09-07-desktop.webp" style="display:none"></a><a href="images/p09-08-desktop.webp" class="gallery-link" rel="gallery-艺华园" data-mobile="images/p09-08-mobile.webp" data-desktop="images/p09-08-desktop.webp" style="display:none"></a><a href="images/p09-09-desktop.webp" class="gallery-link" rel="gallery-艺华园" data-mobile="images/p09-09-mobile.webp" data-desktop="images/p09-09-desktop.webp" style="display:none"></a>
+  </div>
+  <div class="meta">
+    <div class="cat">旧建筑改造活化 · 已建成</div>
+    <h3>艺华园</h3>
+    <div class="title-en">Yihua Garden</div>
+    
+    <div class="sum">乡村旧建筑活动改造为新式商业文化空间</div>
+  </div>
+</div>
+<div class="card reveal">
+  <div class="thumb">
+    <a href="images/p10-01-desktop.webp" class="gallery-link" rel="gallery-升平名扬里历史街区-保护与更新" data-mobile="images/p10-01-mobile.webp" data-desktop="images/p10-01-desktop.webp"><img src="images/p10-01-thumb.webp" alt="升平名扬里历史街区-保护与更新" loading="lazy" decoding="async"></a><a href="images/p10-02-desktop.webp" class="gallery-link" rel="gallery-升平名扬里历史街区-保护与更新" data-mobile="images/p10-02-mobile.webp" data-desktop="images/p10-02-desktop.webp" style="display:none"></a>
+  </div>
+  <div class="meta">
+    <div class="cat">旧街区改造活化 · 在建中</div>
+    <h3>升平名扬里历史街区-保护与更新</h3>
+    <div class="title-en">Renewal of Shengping Mingyangli Historical Block</div>
+    
+    <div class="sum">中心城区重要历史街区保护修缮及活化更新</div>
+  </div>
+</div>
+<div class="card reveal">
+  <div class="thumb">
+    <a href="images/p11-01-desktop.webp" class="gallery-link" rel="gallery-顺德文化馆修缮活化" data-mobile="images/p11-01-mobile.webp" data-desktop="images/p11-01-desktop.webp"><img src="images/p11-01-thumb.webp" alt="顺德文化馆修缮活化" loading="lazy" decoding="async"></a><a href="images/p11-02-desktop.webp" class="gallery-link" rel="gallery-顺德文化馆修缮活化" data-mobile="images/p11-02-mobile.webp" data-desktop="images/p11-02-desktop.webp" style="display:none"></a><a href="images/p11-03-desktop.webp" class="gallery-link" rel="gallery-顺德文化馆修缮活化" data-mobile="images/p11-03-mobile.webp" data-desktop="images/p11-03-desktop.webp" style="display:none"></a><a href="images/p11-04-desktop.webp" class="gallery-link" rel="gallery-顺德文化馆修缮活化" data-mobile="images/p11-04-mobile.webp" data-desktop="images/p11-04-desktop.webp" style="display:none"></a>
+  </div>
+  <div class="meta">
+    <div class="cat">旧建筑改造活化 · 方案深化</div>
+    <h3>顺德文化馆修缮活化</h3>
+    <div class="title-en">Shunde Cultural Center Renovation</div>
+    
+    <div class="sum">中心城区重要历史建筑改造为新式商业文化空间</div>
+  </div>
+</div>
+<div class="card reveal">
+  <div class="thumb">
+    <a href="images/p12-01-desktop.webp" class="gallery-link" rel="gallery-龙眼文化驿站" data-mobile="images/p12-01-mobile.webp" data-desktop="images/p12-01-desktop.webp"><img src="images/p12-01-thumb.webp" alt="龙眼文化驿站" loading="lazy" decoding="async"></a><a href="images/p12-02-desktop.webp" class="gallery-link" rel="gallery-龙眼文化驿站" data-mobile="images/p12-02-mobile.webp" data-desktop="images/p12-02-desktop.webp" style="display:none"></a><a href="images/p12-03-desktop.webp" class="gallery-link" rel="gallery-龙眼文化驿站" data-mobile="images/p12-03-mobile.webp" data-desktop="images/p12-03-desktop.webp" style="display:none"></a>
+  </div>
+  <div class="meta">
+    <div class="cat">旧建筑改造活化 · 已建成</div>
+    <h3>龙眼文化驿站</h3>
+    <div class="title-en">Longan Cultural Station</div>
+    <div class="award">🏆 佛山市优秀工程勘察设计（传统建筑设计类）一等奖</div>
+    <div class="sum">乡村旧建筑活化改造为村居聚集文化空间</div>
+  </div>
+</div>
+<div class="card reveal">
+  <div class="thumb">
+    <a href="images/p13-01-desktop.webp" class="gallery-link" rel="gallery-杏坛大三巴" data-mobile="images/p13-01-mobile.webp" data-desktop="images/p13-01-desktop.webp"><img src="images/p13-01-thumb.webp" alt="杏坛大三巴" loading="lazy" decoding="async"></a><a href="images/p13-02-desktop.webp" class="gallery-link" rel="gallery-杏坛大三巴" data-mobile="images/p13-02-mobile.webp" data-desktop="images/p13-02-desktop.webp" style="display:none"></a>
+  </div>
+  <div class="meta">
+    <div class="cat">旧建筑改造活化 · 已建成</div>
+    <h3>杏坛大三巴</h3>
+    <div class="title-en">Xingtan Memorial Arch</div>
+    
+    <div class="sum">乡村旧建筑活化改造为村居聚集文化空间</div>
+  </div>
+</div>
+<div class="card reveal">
+  <div class="thumb">
+    <a href="images/p14-01-desktop.webp" class="gallery-link" rel="gallery-西樵官山墟改造" data-mobile="images/p14-01-mobile.webp" data-desktop="images/p14-01-desktop.webp"><img src="images/p14-01-thumb.webp" alt="西樵官山墟改造" loading="lazy" decoding="async"></a><a href="images/p14-02-desktop.webp" class="gallery-link" rel="gallery-西樵官山墟改造" data-mobile="images/p14-02-mobile.webp" data-desktop="images/p14-02-desktop.webp" style="display:none"></a>
+  </div>
+  <div class="meta">
+    <div class="cat">旧建筑改造活化 · 在建中</div>
+    <h3>西樵官山墟改造</h3>
+    <div class="title-en">Xiqiao Guanshan Xu Renovation</div>
+    
+    <div class="sum">乡村旧建筑活化改造为村居文化体育活动空间</div>
+  </div>
+</div>
+<div class="card reveal">
+  <div class="thumb">
+    <a href="images/p15-01-desktop.webp" class="gallery-link" rel="gallery-德尔玛总部" data-mobile="images/p15-01-mobile.webp" data-desktop="images/p15-01-desktop.webp"><img src="images/p15-01-thumb.webp" alt="德尔玛总部" loading="lazy" decoding="async"></a><a href="images/p15-02-desktop.webp" class="gallery-link" rel="gallery-德尔玛总部" data-mobile="images/p15-02-mobile.webp" data-desktop="images/p15-02-desktop.webp" style="display:none"></a><a href="images/p15-03-desktop.webp" class="gallery-link" rel="gallery-德尔玛总部" data-mobile="images/p15-03-mobile.webp" data-desktop="images/p15-03-desktop.webp" style="display:none"></a>
+  </div>
+  <div class="meta">
+    <div class="cat">办公 | 产业园区 · 已建成</div>
+    <h3>德尔玛总部</h3>
+    <div class="title-en">DEERMA Headquarter</div>
+    
+    <div class="sum">德尔玛产业园区。</div>
+  </div>
+</div>
+<div class="card reveal">
+  <div class="thumb">
+    <a href="images/p16-01-desktop.webp" class="gallery-link" rel="gallery-拓野智能科技园" data-mobile="images/p16-01-mobile.webp" data-desktop="images/p16-01-desktop.webp"><img src="images/p16-01-thumb.webp" alt="拓野零碳智造产业园项目" loading="lazy" decoding="async"></a><a href="images/p16-02-desktop.webp" class="gallery-link" rel="gallery-拓野智能科技园" data-mobile="images/p16-02-mobile.webp" data-desktop="images/p16-02-desktop.webp" style="display:none"></a><a href="images/p16-03-desktop.webp" class="gallery-link" rel="gallery-拓野智能科技园" data-mobile="images/p16-03-mobile.webp" data-desktop="images/p16-03-desktop.webp" style="display:none"></a><a href="images/p16-04-desktop.webp" class="gallery-link" rel="gallery-拓野智能科技园" data-mobile="images/p16-04-mobile.webp" data-desktop="images/p16-04-desktop.webp" style="display:none"></a>
+  </div>
+  <div class="meta">
+    <div class="cat">办公 | 产业园区 · 已建成</div>
+    <h3>拓野零碳智造产业园项目</h3>
+    <div class="title-en">Tuoye Headquarter</div>
+    
+    <div class="sum">拓野智能产业园区。</div>
+  </div>
+</div>
+<div class="card reveal">
+  <div class="thumb">
+    <a href="images/p17-01-desktop.webp" class="gallery-link" rel="gallery-汉清达产业园" data-mobile="images/p17-01-mobile.webp" data-desktop="images/p17-01-desktop.webp"><img src="images/p17-01-thumb.webp" alt="汉清达产业园" loading="lazy" decoding="async"></a><a href="images/p17-02-desktop.webp" class="gallery-link" rel="gallery-汉清达产业园" data-mobile="images/p17-02-mobile.webp" data-desktop="images/p17-02-desktop.webp" style="display:none"></a><a href="images/p17-03-desktop.webp" class="gallery-link" rel="gallery-汉清达产业园" data-mobile="images/p17-03-mobile.webp" data-desktop="images/p17-03-desktop.webp" style="display:none"></a><a href="images/p17-04-desktop.webp" class="gallery-link" rel="gallery-汉清达产业园" data-mobile="images/p17-04-mobile.webp" data-desktop="images/p17-04-desktop.webp" style="display:none"></a>
+  </div>
+  <div class="meta">
+    <div class="cat">办公 | 产业园区 · 已建成</div>
+    <h3>汉清达产业园</h3>
+    <div class="title-en">汉清达产业园</div>
+    
+    <div class="sum">汉清达产业园。</div>
+  </div>
+</div>
+<div class="card reveal">
+  <div class="thumb">
+    <a href="images/p18-01-desktop.webp" class="gallery-link" rel="gallery-远江幕墙总部" data-mobile="images/p18-01-mobile.webp" data-desktop="images/p18-01-desktop.webp"><img src="images/p18-01-thumb.webp" alt="远江幕墙总部" loading="lazy" decoding="async"></a><a href="images/p18-02-desktop.webp" class="gallery-link" rel="gallery-远江幕墙总部" data-mobile="images/p18-02-mobile.webp" data-desktop="images/p18-02-desktop.webp" style="display:none"></a>
+  </div>
+  <div class="meta">
+    <div class="cat">办公 | 产业园区 · 在建中</div>
+    <h3>远江幕墙总部</h3>
+    <div class="title-en">Yuanjiang Headquarter</div>
+    
+    <div class="sum">远江幕墙产业园区。</div>
+  </div>
+</div>
+<div class="card reveal">
+  <div class="thumb">
+    <a href="images/p19-01-desktop.webp" class="gallery-link" rel="gallery-联丰C地块综合体" data-mobile="images/p19-01-mobile.webp" data-desktop="images/p19-01-desktop.webp"><img src="images/p19-01-thumb.webp" alt="联丰配套商业C地块" loading="lazy" decoding="async"></a>
+  </div>
+  <div class="meta">
+    <div class="cat">配套商业 · 方案设计</div>
+    <h3>联丰配套商业C地块</h3>
+    <div class="title-en">Lianfeng C Block</div>
+    
+    <div class="sum">联丰集团配套商业空间</div>
+  </div>
+</div>
+<div class="card reveal">
+  <div class="thumb">
+    <a href="images/p20-01-desktop.webp" class="gallery-link" rel="gallery-银钻广场" data-mobile="images/p20-01-mobile.webp" data-desktop="images/p20-01-desktop.webp"><img src="images/p20-01-thumb.webp" alt="银钻广场" loading="lazy" decoding="async"></a><a href="images/p20-02-desktop.webp" class="gallery-link" rel="gallery-银钻广场" data-mobile="images/p20-02-mobile.webp" data-desktop="images/p20-02-desktop.webp" style="display:none"></a><a href="images/p20-03-desktop.webp" class="gallery-link" rel="gallery-银钻广场" data-mobile="images/p20-03-mobile.webp" data-desktop="images/p20-03-desktop.webp" style="display:none"></a>
+  </div>
+  <div class="meta">
+    <div class="cat">商业综合体 · 已建成</div>
+    <h3>银钻广场</h3>
+    <div class="title-en">Silver Diamond Plaza</div>
+    
+    <div class="sum">商业综合体</div>
+  </div>
+</div>
+<div class="card reveal">
+  <div class="thumb">
+    <a href="images/p21-01-desktop.webp" class="gallery-link" rel="gallery-中万城" data-mobile="images/p21-01-mobile.webp" data-desktop="images/p21-01-desktop.webp"><img src="images/p21-01-thumb.webp" alt="中万城" loading="lazy" decoding="async"></a><a href="images/p21-02-desktop.webp" class="gallery-link" rel="gallery-中万城" data-mobile="images/p21-02-mobile.webp" data-desktop="images/p21-02-desktop.webp" style="display:none"></a><a href="images/p21-03-desktop.webp" class="gallery-link" rel="gallery-中万城" data-mobile="images/p21-03-mobile.webp" data-desktop="images/p21-03-desktop.webp" style="display:none"></a><a href="images/p21-04-desktop.webp" class="gallery-link" rel="gallery-中万城" data-mobile="images/p21-04-mobile.webp" data-desktop="images/p21-04-desktop.webp" style="display:none"></a><a href="images/p21-05-desktop.webp" class="gallery-link" rel="gallery-中万城" data-mobile="images/p21-05-mobile.webp" data-desktop="images/p21-05-desktop.webp" style="display:none"></a><a href="images/p21-06-desktop.webp" class="gallery-link" rel="gallery-中万城" data-mobile="images/p21-06-mobile.webp" data-desktop="images/p21-06-desktop.webp" style="display:none"></a><a href="images/p21-07-desktop.webp" class="gallery-link" rel="gallery-中万城" data-mobile="images/p21-07-mobile.webp" data-desktop="images/p21-07-desktop.webp" style="display:none"></a>
+  </div>
+  <div class="meta">
+    <div class="cat">办公楼 · 已建成</div>
+    <h3>中万城</h3>
+    <div class="title-en">Zhongwan Plaza</div>
+    
+    <div class="sum">中万城。</div>
+  </div>
+</div>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="section about">
+  <div class="wrap about-grid">
+    <div class="reveal">
+      <div class="sec-head"><h2>关于我们</h2></div>
+      <p>立田工作室<br>| 本工作室背靠顺德建筑设计院股份有限公司，是一个尊重本土文化与语境，并呈现新时代建筑语言的建筑工作室。<br>工作室主要设计领域包括公司总部园区、建筑改造、城市历史街区更新商业综合体、度假酒店、学校建筑等，设计内容囊括规划设计、建筑设计、室内设计的前期概念方案到施工落地，专注设计在实际项目中的落地细节与效果。<br>目前我们保持小型工作室的规模，采用扁平化的工作方式，依托严谨且适时而动的设计方法，为客户提供高品质定制化的专业服务。|</p>
+<p>LITIAN STUDIO<br>| LITIAN STUDIO is affiliated with Shunde Architectural Design Institute Co.,Ltd. Our studio upholds respect for local culture and context while expressing the architectural language of the new era.<br>The studio’s major design practices cover the renewal of urban historic districts, corporate headquarters, industrial parks, building renovation, commercial complexes, resort hotels, educational facilities, and other typologies. Its design services cover the entire process from preliminary conceptual planning, architectural design, and interior design to construction implementation, with a focus on the practical details and final outcomes of design in real-world projects.<br>Maintaining a compact studio scale and adopting a flat working structure, we rely on a  responsive design methodology to deliver high-quality, customized professional services for our clients. |</p>
+    </div>
+    <div class="stats reveal">
+      <div class="stat"><b>60+</b><small>设计院建院历史（年）</small></div>
+      <div class="stat"><b>300+</b><small>设计院工程师</small></div>
+      <div class="stat"><b>380+</b><small>设计院员工总数</small></div>
+    </div>
+  </div>
+</section>
+
+<section id="services" class="section">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>服务范围</h2>
+      <p>覆盖项目全流程的一体化设计服务</p>
+    </div>
+    <div class="services-grid reveal">
+      <div class="service"><h4>建筑设计</h4><p>从概念方案到施工图的全过程设计</p></div>
+      <div class="service"><h4>结构设计</h4><p>新建与加固改造的结构方案与深化</p></div>
+      <div class="service"><h4>幕墙深化</h4><p>幕墙系统的节点深化与落地控制</p></div>
+      <div class="service"><h4>室内设计</h4><p>办公、商业、文化空间的室内一体化设计</p></div>
+      <div class="service"><h4>景观设计</h4><p>建筑外环境与公共空间的景观营造</p></div>
+      <div class="service"><h4>规划设计</h4><p>城市更新与片区规划的前期研究</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="section contact">
+  <div class="wrap reveal">
+    <p style="color:var(--fg-dim);margin-bottom:28px;">佛山市顺德区大良立田路建筑设计大厦</p>
+    <a class="btn" href="mailto:hello@sdadi.com">联系我们</a>
+  </div>
+</section>
+
+<footer class="wrap">
+  <span>© <span id="year"></span> 立田工作室 LITIAN STUDIO</span>
+  <span>顺德建筑设计院股份有限公司</span>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.14.3/simple-lightbox.min.js"></script>
+<script>
+  const header = document.getElementById('siteHeader');
+  const onScroll = () => {
+    if (window.scrollY > 80) header.classList.add('scrolled');
+    else header.classList.remove('scrolled');
+  };
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  const workSlides = document.querySelectorAll('.work-hero-slide');
+  let workIdx = 0;
+  function showWorkSlide(i) {
+    const s = workSlides[i];
+    if (s.dataset.bg && !s.style.backgroundImage) {
+      s.style.backgroundImage = "url('" + s.dataset.bg + "')";
+    }
+    workSlides.forEach((el, j) => {
+      if (j === i) el.classList.add('active');
+      else el.classList.remove('active');
+    });
+  }
+  if (workSlides.length > 1) {
+    setInterval(() => {
+      workIdx = (workIdx + 1) % workSlides.length;
+      showWorkSlide(workIdx);
+    }, 4000);
+  }
+
+  function updateGalleryHrefs() {
+    const isMobile = window.innerWidth <= 768;
+    document.querySelectorAll('.gallery-link').forEach(link => {
+      const mobileHref = link.dataset.mobile;
+      const desktopHref = link.dataset.desktop;
+      if (mobileHref && desktopHref) {
+        link.setAttribute('href', isMobile ? mobileHref : desktopHref);
+      }
+    });
+  }
+  updateGalleryHrefs();
+  window.addEventListener('resize', updateGalleryHrefs, {passive:true});
+
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}
+    });
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  document.querySelectorAll('.gallery-link').forEach(link => {
+    const preload = () => {
+      if (link.dataset.preloaded) return;
+      link.dataset.preloaded = '1';
+      const isMobile = window.innerWidth <= 768;
+      const url = isMobile ? link.dataset.mobile : link.dataset.desktop;
+      if (url) { const img = new Image(); img.src = url; }
+    };
+    link.addEventListener('touchstart', preload, {once:true, passive:true});
+    link.addEventListener('mouseenter', preload, {once:true, passive:true});
+  });
+
+  new SimpleLightbox('.gallery-link', {
+    captionsData: 'alt',
+    captionDelay: 250,
+    navText: ['←', '→'],
+    closeText: '✕',
+    loop: true
+  });
+</script>
+</body>
+</html>
