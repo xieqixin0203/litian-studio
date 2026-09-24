@@ -71,18 +71,19 @@
   .work-hero-slide.active{opacity:1;}
   .work-hero::before{
     content:"";position:absolute;inset:0;z-index:1;
-    background:linear-gradient(180deg,rgba(0,0,0,.25) 0%,transparent 35%,transparent 55%,rgba(0,0,0,.55) 100%);
+    background:linear-gradient(180deg,rgba(0,0,0,.25) 0%,transparent 35%,transparent 55%,rgba(0,0,0,.35) 100%);
   }
-  .work-hero-title{
-    position:absolute;bottom:44px;left:0;right:0;z-index:2;
-    text-align:center;color:#fff;
+
+  /* 精选作品文字，移到封面下方的白色区域 */
+  .work-head{
+    padding:clamp(50px,7vw,80px) 0 0;
   }
-  .work-hero-title h1{
+  .work-head h1{
     font-size:clamp(1.3rem,2.4vw,1.9rem);font-weight:400;
-    letter-spacing:.02em;margin-bottom:8px;
+    letter-spacing:.02em;margin-bottom:10px;
   }
-  .work-hero-title p{
-    font-size:.82rem;color:rgba(255,255,255,.75);
+  .work-head p{
+    font-size:.88rem;color:var(--fg-dim);font-weight:300;
   }
 
   .section{padding:clamp(50px,8vw,100px) 0;}
@@ -165,7 +166,10 @@
 <div class="work-hero-slide" data-bg="https://cdn.jsdelivr.net/gh/xieqixin0203/litian-studio@main/images/hero-05.webp"></div>
 
   </div>
-  <div class="work-hero-title">
+</div>
+
+<div class="work-head">
+  <div class="wrap">
     <h1>精选作品</h1>
     <p>从概念方案到施工落地，专注设计在实际项目中的细节与效果</p>
   </div>
@@ -500,7 +504,7 @@
     setInterval(() => {
       workIdx = (workIdx + 1) % workSlides.length;
       showWorkSlide(workIdx);
-    }, 3500);
+    }, 3200);
   }
 
   function updateGalleryHrefs() {
