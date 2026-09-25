@@ -19,6 +19,8 @@
     display:flex;align-items:center;justify-content:center;
     text-decoration:none;
   }
+
+  /* 封面图：底层 */
   .entry-bg{
     position:absolute;inset:0;z-index:0;
     background-image:url('https://cdn.jsdelivr.net/gh/xieqixin0203/litian-studio@main/images/entry-cover.webp');
@@ -30,12 +32,119 @@
     from{opacity:0.15;}
     to{opacity:1;}
   }
+
+  /* 整体暗化 */
   .entry::before{
     content:"";position:absolute;inset:0;z-index:1;
     background:rgba(0,0,0,.35);
   }
+
+  /* ===== 夜空与海面：半透明，让封面隐约透出 ===== */
+  .scene{
+    position:absolute;inset:0;z-index:2;overflow:hidden;
+    pointer-events:none;
+  }
+  .scene-sky{
+    position:absolute;top:0;left:0;right:0;height:55%;
+    background:linear-gradient(180deg,
+      rgba(1,5,13,.78) 0%,
+      rgba(10,22,40,.6) 60%,
+      rgba(13,31,58,.5) 100%);
+  }
+  .scene-sea{
+    position:absolute;bottom:0;left:0;right:0;height:45%;
+    background:linear-gradient(180deg,
+      rgba(13,31,58,.5) 0%,
+      rgba(6,16,34,.72) 100%);
+    overflow:hidden;
+  }
+
+  /* ===== 月亮 ===== */
+  .moon-wrap{
+    position:absolute;left:50%;bottom:45%;
+    transform:translateX(-50%);
+    width:clamp(90px,16vw,160px);
+    height:clamp(90px,16vw,160px);
+    z-index:3;pointer-events:none;
+    animation:moonRise 4s cubic-bezier(0.17,0.67,0.83,0.67) forwards;
+  }
+  .moon-body{
+    width:100%;height:100%;border-radius:50%;
+    background:radial-gradient(circle at 38% 35%,
+      #fffdf3 0%,#fff4c8 35%,#f7dc7e 70%,#e8c24a 100%);
+    box-shadow:
+      0 0 40px 12px rgba(255,240,180,.5),
+      0 0 100px 40px rgba(255,220,130,.28),
+      0 0 200px 80px rgba(255,210,100,.14);
+  }
+  @keyframes moonRise{
+    0%{
+      bottom:38%;
+      opacity:0;
+      transform:translateX(-50%) scale(.6);
+    }
+    30%{opacity:1;}
+    100%{
+      bottom:62%;
+      opacity:1;
+      transform:translateX(-50%) scale(1);
+    }
+  }
+
+  /* ===== 月光倒影 ===== */
+  .moon-reflection{
+    position:absolute;left:50%;bottom:0;
+    transform:translateX(-50%) scaleY(-0.5);
+    width:clamp(90px,16vw,160px);
+    height:clamp(45px,8vw,80px);
+    border-radius:50%;
+    background:radial-gradient(ellipse at center,
+      rgba(255,240,180,.4) 0%,transparent 70%);
+    filter:blur(12px);
+    z-index:2;pointer-events:none;
+    animation:reflectionFade 4s ease-out forwards;
+  }
+  @keyframes reflectionFade{
+    0%{opacity:0;}
+    60%{opacity:0;}
+    100%{opacity:.65;}
+  }
+
+  /* ===== 星星 ===== */
+  .star{
+    position:absolute;border-radius:50%;
+    background:#ffffff;
+    opacity:0;
+    animation:twinkle 3s ease-in-out infinite;
+  }
+  @keyframes twinkle{
+    0%,100%{opacity:.15;}
+    50%{opacity:.95;}
+  }
+
+  /* ===== 祝福语 ===== */
+  .festival-text{
+    position:absolute;bottom:12%;left:0;right:0;z-index:5;
+    text-align:center;
+    font-size:clamp(.9rem,1.8vw,1.3rem);
+    letter-spacing:.3em;
+    color:#ffffff;
+    text-shadow:0 2px 16px rgba(0,0,0,.7),
+                0 0 30px rgba(255,220,120,.35);
+    font-weight:400;
+    opacity:0;
+    animation:festivalFadeIn 3s ease-out 2s forwards;
+    padding:0 20px;
+    pointer-events:none;
+  }
+  @keyframes festivalFadeIn{
+    from{opacity:0;transform:translateY(14px);}
+    to{opacity:1;transform:translateY(0);}
+  }
+
+  /* ===== 文字内容 ===== */
   .entry-content{
-    position:relative;z-index:2;
+    position:relative;z-index:6;
     padding:0 20px;
     text-align:center;
     transition:transform .6s cubic-bezier(.2,.8,.2,1),opacity .4s;
@@ -75,6 +184,33 @@
 <body>
 <a class="entry" href="work.html">
   <div class="entry-bg"></div>
+
+  <!-- 海上升明月场景（半透明，封面隐约透出） -->
+  <div class="scene">
+    <div class="scene-sky"></div>
+    <div class="scene-sea">
+      <div class="moon-reflection"></div>
+    </div>
+    <!-- 星星 -->
+    <div class="star" style="top:8%;left:12%;width:2px;height:2px;animation-delay:0s;"></div>
+    <div class="star" style="top:15%;left:28%;width:3px;height:3px;animation-delay:1.2s;"></div>
+    <div class="star" style="top:5%;left:45%;width:2px;height:2px;animation-delay:2.5s;"></div>
+    <div class="star" style="top:20%;left:62%;width:2px;height:2px;animation-delay:0.8s;"></div>
+    <div class="star" style="top:10%;left:78%;width:3px;height:3px;animation-delay:1.8s;"></div>
+    <div class="star" style="top:25%;left:88%;width:2px;height:2px;animation-delay:3.2s;"></div>
+    <div class="star" style="top:32%;left:18%;width:2px;height:2px;animation-delay:2s;"></div>
+    <div class="star" style="top:28%;left:52%;width:2px;height:2px;animation-delay:0.5s;"></div>
+    <div class="star" style="top:35%;left:72%;width:2px;height:2px;animation-delay:2.8s;"></div>
+    <div class="star" style="top:18%;left:35%;width:2px;height:2px;animation-delay:1.5s;"></div>
+    <!-- 月亮 -->
+    <div class="moon-wrap">
+      <div class="moon-body"></div>
+    </div>
+  </div>
+
+  <!-- 祝福语 -->
+  <div class="festival-text">中秋佳节，人月两团圆</div>
+
   <div class="entry-content">
     <div class="entry-title">
       <span class="cn">立田工作室</span>
