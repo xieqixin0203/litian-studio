@@ -70,11 +70,86 @@
     font-weight:300;
     text-align:center;
   }
+  /* 月亮 */
+  .entry-moon{
+    position:absolute;top:9vh;right:8vw;z-index:2;
+    width:clamp(80px,12vw,130px);
+    height:clamp(80px,12vw,130px);
+    border-radius:50%;
+    background:radial-gradient(circle at 38% 35%,#fffdf3 0%,#fff4c8 35%,#f7dc7e 70%,#e8c24a 100%);
+    box-shadow:0 0 60px 18px rgba(255,232,150,.35),
+               0 0 120px 40px rgba(255,220,120,.15);
+    animation:moonGlow 9s ease-in-out infinite;
+  }
+  @keyframes moonGlow{
+    0%,100%{
+      box-shadow:0 0 60px 18px rgba(255,232,150,.35),
+                 0 0 120px 40px rgba(255,220,120,.15);
+      transform:scale(1);
+    }
+    50%{
+      box-shadow:0 0 80px 28px rgba(255,232,150,.5),
+                 0 0 160px 55px rgba(255,220,120,.25);
+      transform:scale(1.04);
+    }
+  }
+  /* 飘动光点 */
+  .entry-lantern{
+    position:absolute;z-index:2;
+    width:5px;height:5px;border-radius:50%;
+    background:#ffe08a;
+    box-shadow:0 0 12px 3px rgba(255,217,122,.75);
+    opacity:0;pointer-events:none;
+  }
+  .entry-lantern.l1{bottom:18%;left:16%;animation:floatUp 14s ease-in infinite 0s;}
+  .entry-lantern.l2{bottom:8%;left:74%;animation:floatUp 17s ease-in infinite 4s;}
+  .entry-lantern.l3{bottom:5%;left:48%;animation:floatUp 20s ease-in infinite 8s;}
+  .entry-lantern.l4{bottom:25%;left:30%;animation:floatUp 15s ease-in infinite 2s;}
+  .entry-lantern.l5{bottom:12%;left:60%;animation:floatUp 18s ease-in infinite 6s;}
+  .entry-lantern.l6{bottom:20%;left:88%;animation:floatUp 16s ease-in infinite 10s;}
+  .entry-lantern.l7{bottom:3%;left:35%;animation:floatUp 22s ease-in infinite 12s;}
+  .entry-lantern.l8{bottom:15%;left:5%;animation:floatUp 19s ease-in infinite 7s;}
+  @keyframes floatUp{
+    0%{transform:translateY(0) scale(.6);opacity:0;}
+    12%{opacity:.9;}
+    80%{opacity:.7;}
+    100%{transform:translateY(-72vh) scale(1);opacity:0;}
+  }
+  /* 中秋祝福文字 */
+  .entry-festival{
+    position:absolute;top:28%;left:0;right:0;z-index:2;
+    text-align:center;
+    font-size:clamp(.9rem,1.8vw,1.25rem);
+    letter-spacing:.32em;
+    color:rgba(255,240,200,.95);
+    text-shadow:0 2px 16px rgba(0,0,0,.6),
+                0 0 30px rgba(255,220,120,.4);
+    font-weight:300;
+    opacity:0;
+    animation:festivalFadeIn 3s ease-out 1.5s forwards;
+    padding:0 20px;
+    pointer-events:none;
+  }
+  @keyframes festivalFadeIn{
+    from{opacity:0;transform:translateY(12px);}
+    to{opacity:1;transform:translateY(0);}
+  }
+
 </style>
 </head>
 <body>
 <a class="entry" href="work.html">
   <div class="entry-bg"></div>
+  <div class="entry-moon"></div>
+  <div class="entry-lantern l1"></div>
+  <div class="entry-lantern l2"></div>
+  <div class="entry-lantern l3"></div>
+  <div class="entry-lantern l4"></div>
+  <div class="entry-lantern l5"></div>
+  <div class="entry-lantern l6"></div>
+  <div class="entry-lantern l7"></div>
+  <div class="entry-lantern l8"></div>
+  <div class="entry-festival">中秋佳节，人月两团圆</div>
   <div class="entry-content">
     <div class="entry-title">
       <span class="cn">立田工作室</span>
