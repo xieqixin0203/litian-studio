@@ -70,61 +70,91 @@
     font-weight:300;
     text-align:center;
   }
-  /* 月亮 */
+  /* 大月亮：从底部升起 */
   .entry-moon{
-    position:absolute;top:9vh;right:8vw;z-index:2;
-    width:clamp(80px,12vw,130px);
-    height:clamp(80px,12vw,130px);
+    position:absolute;
+    bottom:-45vh;
+    left:50%;
+    transform:translateX(-50%);
+    width:110vh;
+    height:110vh;
     border-radius:50%;
-    background:radial-gradient(circle at 38% 35%,#fffdf3 0%,#fff4c8 35%,#f7dc7e 70%,#e8c24a 100%);
-    box-shadow:0 0 60px 18px rgba(255,232,150,.35),
-               0 0 120px 40px rgba(255,220,120,.15);
-    animation:moonGlow 9s ease-in-out infinite;
+    background:
+      radial-gradient(circle at 22% 28%, rgba(255,255,255,.18) 0%, transparent 7%),
+      radial-gradient(circle at 68% 42%, rgba(255,255,255,.14) 0%, transparent 6%),
+      radial-gradient(circle at 42% 68%, rgba(255,255,255,.12) 0%, transparent 9%),
+      radial-gradient(circle at 78% 22%, rgba(200,170,80,.1) 0%, transparent 11%),
+      radial-gradient(circle at 30% 55%, rgba(200,170,80,.08) 0%, transparent 8%),
+      radial-gradient(circle at 50% 45%,
+        #fffdf0 0%,
+        #fff6c8 22%,
+        #f7e58e 48%,
+        #e8ce62 72%,
+        #c9a93a 90%,
+        #a88820 100%);
+    box-shadow:
+      0 0 80px 20px rgba(255,240,180,.35),
+      0 0 200px 80px rgba(255,220,130,.22),
+      0 0 400px 180px rgba(255,210,100,.1);
+    z-index:2;
+    animation:moonGlow 8s ease-in-out infinite;
+    pointer-events:none;
   }
   @keyframes moonGlow{
     0%,100%{
-      box-shadow:0 0 60px 18px rgba(255,232,150,.35),
-                 0 0 120px 40px rgba(255,220,120,.15);
-      transform:scale(1);
+      box-shadow:
+        0 0 80px 20px rgba(255,240,180,.35),
+        0 0 200px 80px rgba(255,220,130,.22),
+        0 0 400px 180px rgba(255,210,100,.1);
+      filter:brightness(1);
     }
     50%{
-      box-shadow:0 0 80px 28px rgba(255,232,150,.5),
-                 0 0 160px 55px rgba(255,220,120,.25);
-      transform:scale(1.04);
+      box-shadow:
+        0 0 110px 30px rgba(255,240,180,.5),
+        0 0 260px 110px rgba(255,220,130,.32),
+        0 0 520px 220px rgba(255,210,100,.16);
+      filter:brightness(1.06);
     }
   }
   /* 飘动光点 */
   .entry-lantern{
-    position:absolute;z-index:2;
-    width:5px;height:5px;border-radius:50%;
-    background:#ffe08a;
-    box-shadow:0 0 12px 3px rgba(255,217,122,.75);
+    position:absolute;z-index:3;
+    width:6px;height:6px;border-radius:50%;
+    background:#ffe89a;
+    box-shadow:0 0 10px 3px rgba(255,225,140,.9), 0 0 22px 8px rgba(255,210,100,.5);
     opacity:0;pointer-events:none;
   }
-  .entry-lantern.l1{bottom:18%;left:16%;animation:floatUp 14s ease-in infinite 0s;}
-  .entry-lantern.l2{bottom:8%;left:74%;animation:floatUp 17s ease-in infinite 4s;}
-  .entry-lantern.l3{bottom:5%;left:48%;animation:floatUp 20s ease-in infinite 8s;}
-  .entry-lantern.l4{bottom:25%;left:30%;animation:floatUp 15s ease-in infinite 2s;}
-  .entry-lantern.l5{bottom:12%;left:60%;animation:floatUp 18s ease-in infinite 6s;}
-  .entry-lantern.l6{bottom:20%;left:88%;animation:floatUp 16s ease-in infinite 10s;}
-  .entry-lantern.l7{bottom:3%;left:35%;animation:floatUp 22s ease-in infinite 12s;}
-  .entry-lantern.l8{bottom:15%;left:5%;animation:floatUp 19s ease-in infinite 7s;}
+  .entry-lantern.l1{bottom:18%;left:8%;animation:floatUp 14s ease-in infinite 0s;}
+  .entry-lantern.l2{bottom:8%;left:20%;animation:floatUp 17s ease-in infinite 2s;}
+  .entry-lantern.l3{bottom:5%;left:35%;animation:floatUp 20s ease-in infinite 5s;}
+  .entry-lantern.l4{bottom:12%;left:50%;animation:floatUp 15s ease-in infinite 7s;}
+  .entry-lantern.l5{bottom:6%;left:65%;animation:floatUp 18s ease-in infinite 3s;}
+  .entry-lantern.l6{bottom:15%;left:80%;animation:floatUp 16s ease-in infinite 6s;}
+  .entry-lantern.l7{bottom:22%;left:92%;animation:floatUp 22s ease-in infinite 10s;}
+  .entry-lantern.l8{bottom:3%;left:10%;animation:floatUp 19s ease-in infinite 9s;}
+  .entry-lantern.l9{bottom:20%;left:28%;animation:floatUp 13s ease-in infinite 1s;}
+  .entry-lantern.l10{bottom:10%;left:42%;animation:floatUp 21s ease-in infinite 4s;}
+  .entry-lantern.l11{bottom:18%;left:58%;animation:floatUp 17s ease-in infinite 8s;}
+  .entry-lantern.l12{bottom:9%;left:72%;animation:floatUp 19s ease-in infinite 12s;}
+  .entry-lantern.l13{bottom:25%;left:88%;animation:floatUp 14s ease-in infinite 11s;}
+  .entry-lantern.l14{bottom:13%;left:3%;animation:floatUp 16s ease-in infinite 13s;}
+  .entry-lantern.l15{bottom:7%;left:38%;animation:floatUp 20s ease-in infinite 2.5s;}
   @keyframes floatUp{
-    0%{transform:translateY(0) scale(.6);opacity:0;}
-    12%{opacity:.9;}
-    80%{opacity:.7;}
-    100%{transform:translateY(-72vh) scale(1);opacity:0;}
+    0%{transform:translateY(0) scale(.5);opacity:0;}
+    10%{opacity:1;}
+    50%{opacity:.85;}
+    90%{opacity:.5;}
+    100%{transform:translateY(-78vh) scale(1.1);opacity:0;}
   }
-  /* 中秋祝福文字 */
+  /* 中秋祝福文字：深蓝色，浮在月亮上 */
   .entry-festival{
-    position:absolute;top:28%;left:0;right:0;z-index:2;
+    position:absolute;bottom:22vh;left:0;right:0;z-index:4;
     text-align:center;
-    font-size:clamp(.9rem,1.8vw,1.25rem);
-    letter-spacing:.32em;
-    color:rgba(255,240,200,.95);
-    text-shadow:0 2px 16px rgba(0,0,0,.6),
-                0 0 30px rgba(255,220,120,.4);
-    font-weight:300;
+    font-size:clamp(1rem,2vw,1.4rem);
+    letter-spacing:.3em;
+    color:#0f1d3a;
+    text-shadow:0 1px 8px rgba(255,240,180,.45);
+    font-weight:500;
     opacity:0;
     animation:festivalFadeIn 3s ease-out 1.5s forwards;
     padding:0 20px;
@@ -149,6 +179,13 @@
   <div class="entry-lantern l6"></div>
   <div class="entry-lantern l7"></div>
   <div class="entry-lantern l8"></div>
+  <div class="entry-lantern l9"></div>
+  <div class="entry-lantern l10"></div>
+  <div class="entry-lantern l11"></div>
+  <div class="entry-lantern l12"></div>
+  <div class="entry-lantern l13"></div>
+  <div class="entry-lantern l14"></div>
+  <div class="entry-lantern l15"></div>
   <div class="entry-festival">中秋佳节，人月两团圆</div>
   <div class="entry-content">
     <div class="entry-title">
