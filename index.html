@@ -70,22 +70,23 @@
     font-weight:300;
     text-align:center;
   }
-  /* 右上角真实月亮图 */
+  /* 右上角真实月亮图：screen 模式去掉黑底 */
   .entry-moon{
-    position:absolute;top:6vh;right:5vw;z-index:2;
-    width:clamp(90px,16vw,200px);
+    position:absolute;top:5vh;right:4vw;z-index:2;
+    width:clamp(100px,18vw,220px);
     height:auto;
-    filter:drop-shadow(0 0 30px rgba(255,220,140,.55))
-           drop-shadow(0 0 70px rgba(255,200,100,.25));
+    mix-blend-mode:screen;
+    filter:drop-shadow(0 0 28px rgba(255,220,140,.55))
+           drop-shadow(0 0 70px rgba(255,200,100,.28));
     animation:moonGlow 8s ease-in-out infinite;
     pointer-events:none;
   }
   @keyframes moonGlow{
-    0%,100%{filter:drop-shadow(0 0 30px rgba(255,220,140,.55))
-                    drop-shadow(0 0 70px rgba(255,200,100,.25));
+    0%,100%{filter:drop-shadow(0 0 28px rgba(255,220,140,.55))
+                    drop-shadow(0 0 70px rgba(255,200,100,.28));
             transform:scale(1);}
-    50%{filter:drop-shadow(0 0 45px rgba(255,220,140,.75))
-                drop-shadow(0 0 100px rgba(255,200,100,.38));
+    50%{filter:drop-shadow(0 0 42px rgba(255,220,140,.75))
+                drop-shadow(0 0 100px rgba(255,200,100,.4));
         transform:scale(1.04);}
   }
   /* 飘动光点 */
@@ -128,15 +129,16 @@
     90%{opacity:.5;}
     100%{transform:translateY(-78vh) scale(1.1);opacity:0;}
   }
-  /* 中秋祝福文字：深蓝色 */
+  /* 中秋祝福文字：底部，白色 */
   .entry-festival{
-    position:absolute;top:30%;left:0;right:0;z-index:4;
+    position:absolute;bottom:8vh;left:0;right:0;z-index:4;
     text-align:center;
     font-size:clamp(1rem,2vw,1.4rem);
     letter-spacing:.3em;
-    color:#0f1d3a;
-    text-shadow:0 1px 10px rgba(255,240,180,.6);
-    font-weight:500;
+    color:#ffffff;
+    text-shadow:0 2px 12px rgba(0,0,0,.6),
+                0 0 24px rgba(255,220,140,.35);
+    font-weight:400;
     opacity:0;
     animation:festivalFadeIn 3s ease-out 1.5s forwards;
     padding:0 20px;
