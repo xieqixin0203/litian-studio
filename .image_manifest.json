@@ -179,21 +179,6 @@
   "p995ede7a-02": {
     "fingerprint": "15883059"
   },
-  "p3ef6b7fb-01": {
-    "fingerprint": "4318800"
-  },
-  "p3ef6b7fb-02": {
-    "fingerprint": "3104121"
-  },
-  "p3ef6b7fb-03": {
-    "fingerprint": "686127"
-  },
-  "p3ef6b7fb-04": {
-    "fingerprint": "801684"
-  },
-  "p3ef6b7fb-05": {
-    "fingerprint": "3185933"
-  },
   "pf7eab206-01": {
     "fingerprint": "35469257"
   },
@@ -209,27 +194,6 @@
   "pa93c0e1f-02": {
     "fingerprint": "10890329"
   },
-  "p09858e2b-01": {
-    "fingerprint": "10265658"
-  },
-  "p09858e2b-02": {
-    "fingerprint": "10719950"
-  },
-  "p09858e2b-03": {
-    "fingerprint": "15177201"
-  },
-  "pf4f89ee0-01": {
-    "fingerprint": "2450950"
-  },
-  "pf4f89ee0-02": {
-    "fingerprint": "6825570"
-  },
-  "pf4f89ee0-03": {
-    "fingerprint": "1706497"
-  },
-  "pf4f89ee0-04": {
-    "fingerprint": "1579013"
-  },
   "p5f261648-01": {
     "fingerprint": "25402477"
   },
@@ -239,55 +203,10 @@
   "p5f261648-03": {
     "fingerprint": "14363116"
   },
-  "p29267106-01": {
-    "fingerprint": "3056732"
-  },
-  "p29267106-02": {
-    "fingerprint": "2826508"
-  },
-  "p29267106-03": {
-    "fingerprint": "4025050"
-  },
-  "p492e2988-01": {
-    "fingerprint": "3293317"
-  },
-  "p492e2988-02": {
-    "fingerprint": "3539001"
-  },
-  "p492e2988-03": {
-    "fingerprint": "1394616"
-  },
-  "p492e2988-04": {
-    "fingerprint": "5073819"
-  },
-  "p492e2988-05": {
-    "fingerprint": "3696313"
-  },
-  "p492e2988-06": {
-    "fingerprint": "2387732"
-  },
-  "p492e2988-07": {
-    "fingerprint": "5754182"
-  },
-  "p46a60117-01": {
-    "fingerprint": "13485983"
-  },
-  "p46a60117-02": {
-    "fingerprint": "13624213"
-  },
-  "p46a60117-03": {
-    "fingerprint": "32514970"
-  },
-  "p46a60117-04": {
-    "fingerprint": "13311583"
-  },
   "pdccb6a41-01": {
     "fingerprint": "8733325"
   },
   "pdccb6a41-02": {
     "fingerprint": "7506277"
-  },
-  "pbeff4a3f-01": {
-    "fingerprint": "2438718"
   }
 }
