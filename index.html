@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>立田工作室 LITIAN STUDIO</title>
-<link rel="preload" as="image" href="https://cdn.jsdelivr.net/gh/xieqixin0203/litian-studio@main/images/gate.webp?v=1790758354">
+<link rel="preload" as="image" href="https://cdn.jsdelivr.net/gh/xieqixin0203/litian-studio@main/images/gate.webp?v=1790758602">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -55,6 +55,11 @@
     100%{transform:translateX(-50%) translateY(0);opacity:1;}
   }
 
+  /* 手机端：门楼占满屏幕底部宽度，左右无空隙 */
+  @media(max-width:768px){
+    .gate-wrap{width:100vw;}
+  }
+
   .festival-text{position:absolute;bottom:33%;left:0;right:0;z-index:5;text-align:center;
     font-size:clamp(1rem,2vw,1.4rem);letter-spacing:.32em;color:#fff5d0;
     text-shadow:0 2px 16px rgba(0,0,0,.8),0 0 30px rgba(255,200,80,.7),0 0 60px rgba(255,100,60,.35);
@@ -71,7 +76,7 @@
   <div class="entry-bg"></div>
   <div class="nd-scene">
     <canvas id="fireworks-canvas" class="fireworks-canvas"></canvas>
-    <div class="gate-wrap"><img class="gate-img" src="https://cdn.jsdelivr.net/gh/xieqixin0203/litian-studio@main/images/gate.webp?v=1790758354" alt="国庆门楼"></div>
+    <div class="gate-wrap"><img class="gate-img" src="https://cdn.jsdelivr.net/gh/xieqixin0203/litian-studio@main/images/gate.webp?v=1790758602" alt="国庆门楼"></div>
   </div>
   <div class="festival-text">国庆快乐，家国同庆</div>
   <div class="entry-content">
@@ -106,18 +111,18 @@
 
   function explode(x, y){
     const palette = PALETTES[Math.floor(Math.random() * PALETTES.length)];
-    const count = 70 + Math.floor(Math.random() * 50);
+    const count = 60 + Math.floor(Math.random() * 40);
     for (let i = 0; i < count; i++){
       const angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.3;
-      const speed = 2 + Math.random() * 4.5;
+      const speed = 1.2 + Math.random() * 2.8;   // 爆炸速度：慢
       particles.push({
         x: x, y: y,
         vx: Math.cos(angle) * speed,
         vy: Math.sin(angle) * speed,
         life: 1.0,
-        decay: 0.010 + Math.random() * 0.015,
+        decay: 0.006 + Math.random() * 0.010,     // 存活更久
         color: palette[Math.floor(Math.random() * palette.length)],
-        size: 1.5 + Math.random() * 1.8
+        size: 1.6 + Math.random() * 1.8
       });
     }
   }
@@ -132,12 +137,14 @@
     const rightY = H * (0.08 + Math.random() * 0.22);
     explode(rightX, rightY);
 
-    setTimeout(spawn, 1100 + Math.random() * 900);
+    // 每轮间隔更长：2.0–3.5 秒
+    setTimeout(spawn, 2000 + Math.random() * 1500);
   }
 
   function loop(){
+    // 拖尾更长（0.08），烟花扩散更慢、更柔和
     ctx.globalCompositeOperation = 'destination-out';
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.16)';
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
     ctx.fillRect(0, 0, W, H);
     ctx.globalCompositeOperation = 'source-over';
 
@@ -145,9 +152,9 @@
       const p = particles[i];
       p.x += p.vx;
       p.y += p.vy;
-      p.vy += 0.06;
-      p.vx *= 0.985;
-      p.vy *= 0.985;
+      p.vy += 0.035;    // 重力：小
+      p.vx *= 0.99;     // 阻力：小，粒子飞得更远
+      p.vy *= 0.99;
       p.life -= p.decay;
       if (p.life <= 0){ particles.splice(i, 1); continue; }
       ctx.globalAlpha = p.life;
@@ -160,7 +167,8 @@
     requestAnimationFrame(loop);
   }
 
-  setTimeout(spawn, 600);
+  // 首次出现延迟 1.0 秒，避免打开就炸
+  setTimeout(spawn, 1000);
   loop();
 })();
 </script>
