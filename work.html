@@ -9,46 +9,32 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg:#ffffff;--fg:#000000;--fg-dim:#333333;
-    --line:#e5e5e5;--maxw:1156px;
-  }
+  :root{--bg:#ffffff;--fg:#000000;--fg-dim:#333333;--line:#e5e5e5;--maxw:1156px;}
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
-  body{
-    background:var(--bg);color:var(--fg);line-height:1.5;
+  body{background:var(--bg);color:var(--fg);line-height:1.5;
     font-family:"Fira Sans","PingFang SC","Microsoft YaHei",sans-serif;
-    -webkit-font-smoothing:antialiased;font-weight:300;
-  }
+    -webkit-font-smoothing:antialiased;font-weight:300;}
   img{display:block;max-width:100%;}
   a{color:inherit;text-decoration:none;}
   .wrap{width:min(100% - 40px,var(--maxw));margin-inline:auto;}
-
-  header{
-    position:fixed;inset:0 0 auto 0;z-index:50;
-    background:transparent;
-    border-bottom:1px solid transparent;
-    transition:background .4s ease, border-color .4s ease;
-  }
-  header.scrolled{
-    background:rgba(255,255,255,.92);
-    border-bottom:1px solid var(--line);
-    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-  }
+  header{position:fixed;inset:0 0 auto 0;z-index:50;background:transparent;
+    border-bottom:1px solid transparent;transition:background .4s ease,border-color .4s ease;}
+  header.scrolled{background:rgba(255,255,255,.92);border-bottom:1px solid var(--line);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);}
   .nav{display:flex;align-items:center;justify-content:space-between;height:80px;}
   .logo{font-weight:500;font-size:1.15rem;display:flex;align-items:center;gap:12px;}
   .logo .logo-cn{font-weight:600;line-height:1.1;color:#ffffff;transition:color .4s;}
   .logo .logo-cn .cn-a,.logo .logo-cn .cn-b{display:inline;}
-  .logo .logo-en{font-size:.8rem;letter-spacing:.28em;color:rgba(255,255,255,.8);font-weight:400;text-transform:uppercase;transition:color .4s;}
+  .logo .logo-en{font-size:.8rem;letter-spacing:.28em;color:rgba(255,255,255,.8);
+    font-weight:400;text-transform:uppercase;transition:color .4s;}
   header.scrolled .logo .logo-cn{color:var(--fg);}
   header.scrolled .logo .logo-en{color:var(--fg-dim);}
-
   .nav-links{display:flex;gap:28px;font-size:.84rem;font-weight:400;}
   .nav-links a{color:rgba(255,255,255,.85);transition:color .4s;}
   .nav-links a:hover{color:#ffffff;}
   header.scrolled .nav-links a{color:var(--fg-dim);}
   header.scrolled .nav-links a:hover{color:var(--fg);}
-
   @media(max-width:768px){
     .nav{flex-direction:column;align-items:stretch;height:auto;padding:12px 0 10px;gap:10px;}
     .logo{width:100%;justify-content:space-between;font-size:1.05rem;}
@@ -57,65 +43,36 @@
     .logo .logo-en{font-size:.72rem;letter-spacing:.24em;}
     .nav-links{gap:20px;font-size:.78rem;}
   }
-
-  .work-hero{
-    position:relative;width:100%;height:62vh;min-height:380px;
-    overflow:hidden;background:#111;
-  }
+  .work-hero{position:relative;width:100%;height:62vh;min-height:380px;overflow:hidden;background:#111;}
   .work-hero-slides{position:absolute;inset:0;}
-  .work-hero-slide{
-    position:absolute;inset:0;
-    background-size:cover;background-position:center;
-    opacity:0;transition:opacity 1.8s ease-in-out;
-  }
+  .work-hero-slide{position:absolute;inset:0;background-size:cover;background-position:center;
+    opacity:0;transition:opacity 1.8s ease-in-out;}
   .work-hero-slide.active{opacity:1;}
-  .work-hero::before{
-    content:"";position:absolute;inset:0;z-index:1;
-    background:linear-gradient(180deg,rgba(0,0,0,.25) 0%,transparent 35%,transparent 55%,rgba(0,0,0,.55) 100%);
-  }
-  .work-hero-tagline{
-    position:absolute;bottom:6%;left:0;right:0;z-index:2;
-    text-align:center;
-    font-size:clamp(.78rem,1.5vw,1rem);
-    letter-spacing:.22em;
-    color:#ffffff;
-    text-shadow:0 2px 12px rgba(0,0,0,.55);
-    font-weight:300;padding:0 20px;
-  }
-
+  .work-hero::before{content:"";position:absolute;inset:0;z-index:1;
+    background:linear-gradient(180deg,rgba(0,0,0,.25) 0%,transparent 35%,transparent 55%,rgba(0,0,0,.55) 100%);}
+  .work-hero-tagline{position:absolute;bottom:6%;left:0;right:0;z-index:2;text-align:center;
+    font-size:clamp(.78rem,1.5vw,1rem);letter-spacing:.22em;color:#ffffff;
+    text-shadow:0 2px 12px rgba(0,0,0,.55);font-weight:300;padding:0 20px;}
   .work-head{padding:clamp(40px,6vw,70px) 0 0;}
-  .work-head h1{
-    font-size:clamp(1.3rem,2.4vw,1.9rem);font-weight:400;
-    letter-spacing:.02em;margin-bottom:10px;
-  }
+  .work-head h1{font-size:clamp(1.3rem,2.4vw,1.9rem);font-weight:400;letter-spacing:.02em;margin-bottom:10px;}
   .work-head p{font-size:.88rem;color:var(--fg-dim);font-weight:300;}
-
   .section{padding:clamp(50px,8vw,100px) 0;}
   .sec-head{margin-bottom:50px;}
   .sec-head h2{font-size:clamp(1.2rem,2.4vw,1.7rem);font-weight:400;letter-spacing:-.01em;margin-bottom:10px;}
   .sec-head p{color:var(--fg-dim);font-size:.88rem;font-weight:300;}
-
   .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:60px 40px;}
   @media(max-width:768px){.grid{grid-template-columns:1fr;gap:40px;}}
-
   .card{background:var(--bg);}
   .card:hover .thumb img{transform:scale(1.03);filter:brightness(125%);}
-  .thumb{
-    aspect-ratio:4/3;overflow:hidden;background:#f0f0f0;
-    cursor:pointer;position:relative;
-  }
-  .thumb img{
-    width:100%;height:100%;object-fit:cover;
-    transition:transform .8s cubic-bezier(.2,.8,.2,1),filter .8s;
-    will-change:transform,filter;
-  }
+  .thumb{aspect-ratio:4/3;overflow:hidden;background:#f0f0f0;cursor:pointer;position:relative;}
+  .thumb img{width:100%;height:100%;object-fit:cover;
+    transition:transform .8s cubic-bezier(.2,.8,.2,1),filter .8s;will-change:transform,filter;}
   .meta{padding:20px 0;}
   .meta .cat{font-size:.75rem;color:var(--fg-dim);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;font-weight:400;}
   .meta h3{font-size:1.1rem;font-weight:500;margin-bottom:4px;letter-spacing:-.01em;}
   .meta .title-en{font-size:.78rem;color:var(--fg-dim);letter-spacing:.06em;margin:0 0 6px;font-weight:300;text-transform:uppercase;}
   .meta .award{font-size:.78rem;color:#b8860b;letter-spacing:.02em;margin-bottom:8px;font-weight:400;}
   .meta .sum{font-size:.85rem;color:var(--fg-dim);line-height:1.6;font-weight:300;}
-
   .about{background:#f8f8f8;border-block:1px solid var(--line);}
   .about-grid{display:grid;grid-template-columns:1fr;gap:40px;}
   @media(min-width:820px){.about-grid{grid-template-columns:1.2fr 1fr;gap:60px;}}
@@ -123,22 +80,15 @@
   .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
   .stat b{display:block;font-size:clamp(1.5rem,3vw,2.2rem);color:var(--fg);font-weight:400;line-height:1.2;}
   .stat small{color:var(--fg-dim);font-size:.7rem;letter-spacing:.08em;font-weight:300;display:block;margin-top:4px;}
-
   .services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:24px;}
   .service h4{font-size:.95rem;font-weight:500;margin-bottom:8px;}
   .service p{font-size:.8rem;color:var(--fg-dim);font-weight:300;}
-
   .contact{text-align:center;border-top:1px solid var(--line);}
-  .btn{
-    display:inline-block;padding:14px 36px;border:1px solid var(--fg);
-    background:transparent;color:var(--fg);font-weight:400;font-size:.9rem;
-    transition:all .3s;
-  }
+  .btn{display:inline-block;padding:14px 36px;border:1px solid var(--fg);background:transparent;
+    color:var(--fg);font-weight:400;font-size:.9rem;transition:all .3s;}
   .btn:hover{background:var(--fg);color:var(--bg);}
-
   footer{padding:40px 0;border-top:1px solid var(--line);color:var(--fg-dim);font-size:.75rem;
     display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-weight:300;}
-
   .reveal{opacity:0;transform:translateY(20px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1);}
   .reveal.visible{opacity:1;transform:none;}
   @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;}html{scroll-behavior:auto;}}
@@ -160,7 +110,6 @@
     </div>
   </nav>
 </header>
-
 <div class="work-hero">
   <div class="work-hero-slides">
     <div class="work-hero-slide active" style="background-image:url('https://cdn.jsdelivr.net/gh/xieqixin0203/litian-studio@main/images/hero-01.webp')"></div>
@@ -172,18 +121,14 @@
   </div>
   <div class="work-hero-tagline">尊重本土语境，呈现新时代建筑语言</div>
 </div>
-
 <div class="work-head">
   <div class="wrap">
     <h1>精选作品</h1>
     <p>从概念方案到施工落地，专注设计在实际项目中的细节与效果</p>
   </div>
 </div>
-
 <section id="work" class="section">
-  <div class="wrap">
-    <div class="grid">
-      <div class="card reveal">
+  <div class="wrap"><div class="grid"><div class="card reveal">
   <div class="thumb">
     <a href="https://cdn.jsdelivr.net/gh/xieqixin0203/litian-studio@main/images/p7034c0f0-01-desktop.webp" class="gallery-link" rel="gallery-申菱二基地" data-mobile="https://cdn.jsdelivr.net/gh/xieqixin0203/litian-studio@main/images/p7034c0f0-01-mobile.webp" data-desktop="https://cdn.jsdelivr.net/gh/xieqixin0203/litian-studio@main/images/p7034c0f0-01-desktop.webp"><img src="https://cdn.jsdelivr.net/gh/xieqixin0203/litian-studio@main/images/p7034c0f0-01-thumb.webp" alt="申菱二基地" loading="lazy" decoding="async"></a><a href="https://cdn.jsdelivr.net/gh/xieqixin0203/litian-studio@main/images/p7034c0f0-02-desktop.webp" class="gallery-link" rel="gallery-申菱二基地" data-mobile="https://cdn.jsdelivr.net/gh/xieqixin0203/litian-studio@main/images/p7034c0f0-02-mobile.webp" data-desktop="https://cdn.jsdelivr.net/gh/xieqixin0203/litian-studio@main/images/p7034c0f0-02-desktop.webp" style="display:none"></a><a href="https://cdn.jsdelivr.net/gh/xieqixin0203/litian-studio@main/images/p7034c0f0-03-desktop.webp" class="gallery-link" rel="gallery-申菱二基地" data-mobile="https://cdn.jsdelivr.net/gh/xieqixin0203/litian-studio@main/images/p7034c0f0-03-mobile.webp" data-desktop="https://cdn.jsdelivr.net/gh/xieqixin0203/litian-studio@main/images/p7034c0f0-03-desktop.webp" style="display:none"></a><a href="https://cdn.jsdelivr.net/gh/xieqixin0203/litian-studio@main/images/p7034c0f0-04-desktop.webp" class="gallery-link" rel="gallery-申菱二基地" data-mobile="https://cdn.jsdelivr.net/gh/xieqixin0203/litian-studio@main/images/p7034c0f0-04-mobile.webp" data-desktop="https://cdn.jsdelivr.net/gh/xieqixin0203/litian-studio@main/images/p7034c0f0-04-desktop.webp" style="display:none"></a><a href="https://cdn.jsdelivr.net/gh/xieqixin0203/litian-studio@main/images/p7034c0f0-05-desktop.webp" class="gallery-link" rel="gallery-申菱二基地" data-mobile="https://cdn.jsdelivr.net/gh/xieqixin0203/litian-studio@main/images/p7034c0f0-05-mobile.webp" data-desktop="https://cdn.jsdelivr.net/gh/xieqixin0203/litian-studio@main/images/p7034c0f0-05-desktop.webp" style="display:none"></a><a href="https://cdn.jsdelivr.net/gh/xieqixin0203/litian-studio@main/images/p7034c0f0-06-desktop.webp" class="gallery-link" rel="gallery-申菱二基地" data-mobile="https://cdn.jsdelivr.net/gh/xieqixin0203/litian-studio@main/images/p7034c0f0-06-mobile.webp" data-desktop="https://cdn.jsdelivr.net/gh/xieqixin0203/litian-studio@main/images/p7034c0f0-06-desktop.webp" style="display:none"></a><a href="https://cdn.jsdelivr.net/gh/xieqixin0203/litian-studio@main/images/p7034c0f0-07-desktop.webp" class="gallery-link" rel="gallery-申菱二基地" data-mobile="https://cdn.jsdelivr.net/gh/xieqixin0203/litian-studio@main/images/p7034c0f0-07-mobile.webp" data-desktop="https://cdn.jsdelivr.net/gh/xieqixin0203/litian-studio@main/images/p7034c0f0-07-desktop.webp" style="display:none"></a><a href="https://cdn.jsdelivr.net/gh/xieqixin0203/litian-studio@main/images/p7034c0f0-08-desktop.webp" class="gallery-link" rel="gallery-申菱二基地" data-mobile="https://cdn.jsdelivr.net/gh/xieqixin0203/litian-studio@main/images/p7034c0f0-08-mobile.webp" data-desktop="https://cdn.jsdelivr.net/gh/xieqixin0203/litian-studio@main/images/p7034c0f0-08-desktop.webp" style="display:none"></a><a href="https://cdn.jsdelivr.net/gh/xieqixin0203/litian-studio@main/images/p7034c0f0-09-desktop.webp" class="gallery-link" rel="gallery-申菱二基地" data-mobile="https://cdn.jsdelivr.net/gh/xieqixin0203/litian-studio@main/images/p7034c0f0-09-mobile.webp" data-desktop="https://cdn.jsdelivr.net/gh/xieqixin0203/litian-studio@main/images/p7034c0f0-09-desktop.webp" style="display:none"></a><a href="https://cdn.jsdelivr.net/gh/xieqixin0203/litian-studio@main/images/p7034c0f0-10-desktop.webp" class="gallery-link" rel="gallery-申菱二基地" data-mobile="https://cdn.jsdelivr.net/gh/xieqixin0203/litian-studio@main/images/p7034c0f0-10-mobile.webp" data-desktop="https://cdn.jsdelivr.net/gh/xieqixin0203/litian-studio@main/images/p7034c0f0-10-desktop.webp" style="display:none"></a>
   </div>
@@ -362,11 +307,8 @@
     
     <div class="sum">远江幕墙产业园区。</div>
   </div>
-</div>
-    </div>
-  </div>
+</div></div></div>
 </section>
-
 <section id="about" class="section about">
   <div class="wrap about-grid">
     <div class="reveal">
@@ -381,13 +323,9 @@
     </div>
   </div>
 </section>
-
 <section id="services" class="section">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <h2>服务范围</h2>
-      <p>覆盖项目全流程的一体化设计服务</p>
-    </div>
+    <div class="sec-head reveal"><h2>服务范围</h2><p>覆盖项目全流程的一体化设计服务</p></div>
     <div class="services-grid reveal">
       <div class="service"><h4>建筑设计</h4><p>从概念方案到施工图的全过程设计</p></div>
       <div class="service"><h4>结构设计</h4><p>新建与加固改造的结构方案与深化</p></div>
@@ -398,19 +336,16 @@
     </div>
   </div>
 </section>
-
 <section id="contact" class="section contact">
   <div class="wrap reveal">
     <p style="color:var(--fg-dim);margin-bottom:28px;">佛山市顺德区大良立田路建筑设计大厦</p>
     <a class="btn" href="mailto:hello@sdadi.com">联系我们</a>
   </div>
 </section>
-
 <footer class="wrap">
   <span>© <span id="year"></span> 立田工作室 LITIAN STUDIO</span>
   <span>顺德建筑设计院股份有限公司</span>
 </footer>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.14.3/simple-lightbox.min.js"></script>
 <script>
   const header = document.getElementById('siteHeader');
@@ -443,11 +378,8 @@
   function updateGalleryHrefs() {
     const isMobile = window.innerWidth <= 768;
     document.querySelectorAll('.gallery-link').forEach(link => {
-      const mobileHref = link.dataset.mobile;
-      const desktopHref = link.dataset.desktop;
-      if (mobileHref && desktopHref) {
-        link.setAttribute('href', isMobile ? mobileHref : desktopHref);
-      }
+      const m = link.dataset.mobile, d = link.dataset.desktop;
+      if (m && d) link.setAttribute('href', isMobile ? m : d);
     });
   }
   updateGalleryHrefs();
