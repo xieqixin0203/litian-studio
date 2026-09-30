@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>立田工作室 LITIAN STUDIO</title>
+<link rel="preload" as="image" href="https://cdn.jsdelivr.net/gh/xieqixin0203/litian-studio@main/images/gate.webp?v=1790757738">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -44,7 +45,8 @@
   /* 门楼：贴底，小尺寸，绝不碰中央三行文字 */
   .gate-wrap{position:absolute;left:50%;bottom:0;transform:translateX(-50%);
     width:clamp(260px,48vw,620px);z-index:3;pointer-events:none;
-    animation:gateRise 3.5s cubic-bezier(0.16,1,0.3,1) forwards;
+    opacity:0;
+    animation:gateRise 3.5s cubic-bezier(0.16,1,0.3,1) 0.3s forwards;
     filter:drop-shadow(0 -8px 30px rgba(255,180,80,.4));}
   .gate-img{width:100%;height:auto;display:block;}
   @keyframes gateRise{
@@ -70,7 +72,7 @@
   <div class="entry-bg"></div>
   <div class="nd-scene">
     <canvas id="fireworks-canvas" class="fireworks-canvas"></canvas>
-    <div class="gate-wrap"><img class="gate-img" src="https://cdn.jsdelivr.net/gh/xieqixin0203/litian-studio@main/images/gate.webp?v=1790757371" alt="国庆门楼"></div>
+    <div class="gate-wrap"><img class="gate-img" src="https://cdn.jsdelivr.net/gh/xieqixin0203/litian-studio@main/images/gate.webp?v=1790757738" alt="国庆门楼"></div>
   </div>
   <div class="festival-text">国庆快乐，家国同庆</div>
   <div class="entry-content">
