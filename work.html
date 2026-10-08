@@ -111,41 +111,43 @@
   .stat b{display:block;font-size:clamp(1.2rem,2.2vw,1.7rem);color:var(--fg);font-weight:400;line-height:1.2;}
   .stat small{color:var(--fg-dim);font-size:.68rem;letter-spacing:.06em;font-weight:300;display:block;margin-top:4px;}
 
-  /* ===== 四行两列 grid：中文标题 / 中文简介 / 英文标题 / 英文简介 逐行对齐 ===== */
-  .about-grid{
+  /* ===== 每个机构一行：中文左、英文右 ===== */
+  .org-row{
     display:grid;
     grid-template-columns:1fr 1fr;
     column-gap:70px;
-    row-gap:0;
+    margin-bottom:56px;
   }
-  .about-title{
+  .org-row:last-child{margin-bottom:0;}
+
+  .org-cell{}
+
+  .org-name{
     color:var(--fg);
     font-size:.95rem;
     font-weight:400;
     line-height:1.5;
-    margin-bottom:12px;
+    margin-bottom:14px;
   }
-  .about-text{
+  .org-text{
     color:var(--fg-dim);
     font-size:.92rem;
     line-height:1.75;
     font-weight:400;
-    margin-bottom:36px;
   }
-  .about-text p{margin-bottom:14px;}
-  .about-text p:last-child{margin-bottom:0;}
-  /* 英文简介底部不留空隙 */
-  .about-text.about-text-en{margin-bottom:0;}
+  .org-text p{margin-bottom:14px;}
+  .org-text p:last-child{margin-bottom:0;}
 
   @media(max-width:768px){
     .about-header{flex-direction:column;gap:26px;margin-bottom:36px;}
     .stats-numbers{grid-template-columns:repeat(3,1fr);gap:16px;width:100%;}
-    .about-grid{grid-template-columns:1fr;column-gap:0;}
-    /* 手机端：中文标题、中文简介、英文标题、英文简介上下排列 */
-    .about-title{margin-bottom:8px;}
-    .about-text{margin-bottom:24px;}
-    .about-text.about-text-en{margin-bottom:0;}
-    .about-title.about-title-en{margin-top:8px;}
+    /* 手机端：每行内上下堆叠 */
+    .org-row{
+      grid-template-columns:1fr;
+      row-gap:22px;
+      margin-bottom:40px;
+    }
+    .org-name{margin-bottom:10px;}
   }
 
   .services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:24px;}
@@ -360,27 +362,37 @@
         <div class="stat"><b>380+</b><small>设计院员工总数</small></div>
       </div>
     </div>
-    <div class="about-grid reveal">
-      <!-- 第一行：中文标题 -->
-      <div class="about-title"></div>
-      <div class="about-title">顺德建筑设计院股份有限公司</div>
-      <!-- 第二行：中文简介 -->
-      <div class="about-text about-text-cn">
-        <p>立田工作室<br>| 本工作室背靠顺德建筑设计院股份有限公司，是一个尊重本土文化与语境，并呈现新时代建筑语言的建筑工作室。<br>工作室主要设计领域包括公司总部园区、建筑改造、城市历史街区更新商业综合体、度假酒店、学校建筑等，设计内容囊括规划设计、建筑设计、室内设计的前期概念方案到施工落地，专注设计在实际项目中的落地细节与效果。<br>目前我们保持小型工作室的规模，采用扁平化的工作方式，依托严谨且适时而动的设计方法，为客户提供高品质定制化的专业服务。|</p>
+
+    <!-- 第一行：设计院（中文左、英文右） -->
+    <div class="org-row reveal">
+      <div class="org-cell">
+        <div class="org-name">顺德建筑设计院股份有限公司</div>
+        <div class="org-text">
+          <p>| 佛山市顺德建筑设计院股份有限公司创立于1958年，是国家建设部核定的建筑行业甲级设计院。公司拥有国家级专家、中高级及正高级职称人员，以及注册建筑师、结构工程师、设备工程师、城市规划师、岩土工程师、消防工程师、造价工程师、咨询工程师等各类注册专业人员，员工近380人。</p>
+        </div>
+      </div>
+      <div class="org-cell">
+        <div class="org-name">Shunde Architectural Design Institute Co., Ltd. (SDADI)</div>
+        <div class="org-text">
+          <p>| Founded in 1958, Shunde Architectural Design Institute Co., Ltd. is a Grade A design institute accredited by the Ministry of Housing and Urban-Rural Development of the PRC. The company has a professional team of nearly 380 employees, including national-level experts, professionals with intermediate to professor-level titles, and registered architects, structural engineers, MEP engineers, urban planners, geotechnical engineers, fire protection engineers, cost engineers and consulting engineers.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 第二行：工作室（中文左、英文右） -->
+    <div class="org-row reveal">
+      <div class="org-cell">
+        <div class="org-name"></div>
+        <div class="org-text">
+          <p>立田工作室<br>| 本工作室背靠顺德建筑设计院股份有限公司，是一个尊重本土文化与语境，并呈现新时代建筑语言的建筑工作室。<br>工作室主要设计领域包括公司总部园区、建筑改造、城市历史街区更新商业综合体、度假酒店、学校建筑等，设计内容囊括规划设计、建筑设计、室内设计的前期概念方案到施工落地，专注设计在实际项目中的落地细节与效果。<br>目前我们保持小型工作室的规模，采用扁平化的工作方式，依托严谨且适时而动的设计方法，为客户提供高品质定制化的专业服务。|</p>
 <p>LITIAN STUDIO<br>| LITIAN STUDIO is affiliated with Shunde Architectural Design Institute Co.,Ltd. Our studio upholds respect for local culture and context while expressing the architectural language of the new era.<br>The studio’s major design practices cover the renewal of urban historic districts, corporate headquarters, industrial parks, building renovation, commercial complexes, resort hotels, educational facilities, and other typologies. Its design services cover the entire process from preliminary conceptual planning, architectural design, and interior design to construction implementation, with a focus on the practical details and final outcomes of design in real-world projects.<br>Maintaining a compact studio scale and adopting a flat working structure, we rely on a  responsive design methodology to deliver high-quality, customized professional services for our clients. |</p>
+        </div>
       </div>
-      <div class="about-text about-text-cn">
-        <p>| 佛山市顺德建筑设计院股份有限公司创立于1958年，是国家建设部核定的建筑行业甲级设计院。公司拥有国家级专家、中高级及正高级职称人员，以及注册建筑师、结构工程师、设备工程师、城市规划师、岩土工程师、消防工程师、造价工程师、咨询工程师等各类注册专业人员，员工近380人。</p>
-      </div>
-      <!-- 第三行：英文标题 -->
-      <div class="about-title about-title-en"></div>
-      <div class="about-title about-title-en">Shunde Architectural Design Institute Co., Ltd. (SDADI)</div>
-      <!-- 第四行：英文简介 -->
-      <div class="about-text about-text-en">
-        
-      </div>
-      <div class="about-text about-text-en">
-        <p>| Founded in 1958, Shunde Architectural Design Institute Co., Ltd. is a Grade A design institute accredited by the Ministry of Housing and Urban-Rural Development of the PRC. The company has a professional team of nearly 380 employees, including national-level experts, professionals with intermediate to professor-level titles, and registered architects, structural engineers, MEP engineers, urban planners, geotechnical engineers, fire protection engineers, cost engineers and consulting engineers.</p>
+      <div class="org-cell">
+        <div class="org-name"></div>
+        <div class="org-text">
+          
+        </div>
       </div>
     </div>
   </div>
