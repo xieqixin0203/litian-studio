@@ -20,17 +20,37 @@
     opacity:0.15;animation:bgFadeIn 3.5s ease-out forwards;}
   @keyframes bgFadeIn{from{opacity:0.15;}to{opacity:1;}}
   .entry::before{content:"";position:absolute;inset:0;z-index:1;background:rgba(0,0,0,.35);}
-  /* ⚠️ 三行文字容器：位置固定居中，任何节日特效都不得覆盖此处的 transform */
+  /* ⚠️ 三行文字容器：位置固定居中 */
   .entry-content{position:relative;z-index:6;padding:0 20px;text-align:center;
     transition:transform .6s cubic-bezier(.2,.8,.2,1),opacity .4s;}
   .entry:hover .entry-content{transform:scale(1.03);opacity:.92;}
   .entry-title{display:flex;flex-direction:column;align-items:center;text-decoration:none;}
-  .entry-title .cn{font-size:clamp(1.8rem,5vw,3.6rem);font-weight:600;letter-spacing:.06em;
-    line-height:1.15;color:#ffffff;text-shadow:0 2px 20px rgba(0,0,0,.45);}
-  .entry-title .en{font-size:clamp(.68rem,1.2vw,.82rem);font-weight:400;letter-spacing:.36em;
-    color:rgba(255,255,255,.85);text-shadow:0 1px 8px rgba(0,0,0,.4);margin-top:14px;white-space:nowrap;}
-  .entry-sub{margin-top:18px;font-size:clamp(.62rem,1.1vw,.72rem);letter-spacing:.18em;
-    color:rgba(255,255,255,.5);text-shadow:0 1px 6px rgba(0,0,0,.4);font-weight:300;text-align:center;}
+  /* 第一行：SDADI 小字（中等大小、浅色） */
+  .entry-title .sdadi{
+    font-size:clamp(.78rem,1.6vw,.95rem);
+    font-weight:400;
+    letter-spacing:.2em;
+    color:rgba(255,255,255,.55);
+    text-shadow:0 1px 6px rgba(0,0,0,.4);
+    margin-bottom:20px;
+    text-align:center;
+    line-height:1.4;
+  }
+  /* 第二行：立田工作室 */
+  .entry-title .cn{
+    font-size:clamp(1.8rem,5vw,3.6rem);
+    font-weight:600;letter-spacing:.06em;line-height:1.15;
+    color:#ffffff;
+    text-shadow:0 2px 20px rgba(0,0,0,.45);
+  }
+  /* 第三行：LITIAN STUDIO */
+  .entry-title .en{
+    font-size:clamp(.68rem,1.2vw,.82rem);
+    font-weight:400;letter-spacing:.36em;
+    color:rgba(255,255,255,.85);
+    text-shadow:0 1px 8px rgba(0,0,0,.4);
+    margin-top:14px;white-space:nowrap;
+  }
   
 </style>
 </head>
@@ -39,10 +59,10 @@
   <div class="entry-bg"></div>
   <div class="entry-content">
     <div class="entry-title">
+      <span class="sdadi">SDADI 顺德建筑设计院股份有限公司</span>
       <span class="cn">立田工作室</span>
       <span class="en">LITIAN STUDIO</span>
     </div>
-    <div class="entry-sub">SDADI 顺德建筑设计院股份有限公司</div>
   </div>
 </a>
 

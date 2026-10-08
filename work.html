@@ -23,26 +23,43 @@
   header.scrolled{background:rgba(255,255,255,.92);border-bottom:1px solid var(--line);
     backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);}
   .nav{display:flex;align-items:center;justify-content:space-between;height:80px;}
-  .logo{font-weight:500;font-size:1.15rem;display:flex;align-items:center;gap:12px;}
-  .logo .logo-cn{font-weight:600;line-height:1.1;color:#ffffff;transition:color .4s;}
-  .logo .logo-cn .cn-a,.logo .logo-cn .cn-b{display:inline;}
-  .logo .logo-en{font-size:.8rem;letter-spacing:.28em;color:rgba(255,255,255,.8);
+
+  /* ===== 顶部栏 logo：上下两行（SDADI + 立田工作室）+ 右侧 LITIAN STUDIO ===== */
+  .logo{display:flex;align-items:center;gap:14px;text-decoration:none;}
+  .logo-left{display:flex;flex-direction:column;line-height:1.1;}
+  .logo-sdadi{
+    font-size:.7rem;
+    font-weight:400;
+    letter-spacing:.16em;
+    color:rgba(255,255,255,.6);
+    margin-bottom:3px;
+    white-space:nowrap;
+    transition:color .4s;
+  }
+  .logo-cn{font-weight:600;line-height:1.05;color:#ffffff;transition:color .4s;font-size:1.1rem;}
+  .logo-cn .cn-a,.logo-cn .cn-b{display:inline;}
+  .logo-en{font-size:.8rem;letter-spacing:.28em;color:rgba(255,255,255,.8);
     font-weight:400;text-transform:uppercase;transition:color .4s;}
-  header.scrolled .logo .logo-cn{color:var(--fg);}
-  header.scrolled .logo .logo-en{color:var(--fg-dim);}
+  header.scrolled .logo-sdadi{color:var(--fg-dim);}
+  header.scrolled .logo-cn{color:var(--fg);}
+  header.scrolled .logo-en{color:var(--fg-dim);}
+
   .nav-links{display:flex;gap:28px;font-size:.84rem;font-weight:400;}
   .nav-links a{color:rgba(255,255,255,.85);transition:color .4s;}
   .nav-links a:hover{color:#ffffff;}
   header.scrolled .nav-links a{color:var(--fg-dim);}
   header.scrolled .nav-links a:hover{color:var(--fg);}
+
   @media(max-width:768px){
     .nav{flex-direction:column;align-items:stretch;height:auto;padding:12px 0 10px;gap:10px;}
-    .logo{width:100%;justify-content:space-between;font-size:1.05rem;}
-    .logo .logo-cn .cn-a,.logo .logo-cn .cn-b{display:block;}
-    .logo .logo-cn{line-height:1.05;}
-    .logo .logo-en{font-size:.72rem;letter-spacing:.24em;}
+    .logo{width:100%;justify-content:space-between;font-size:1.05rem;gap:10px;}
+    .logo-left .logo-cn .cn-a,.logo-left .logo-cn .cn-b{display:block;}
+    .logo-left .logo-cn{line-height:1.05;font-size:1rem;}
+    .logo-sdadi{font-size:.6rem;letter-spacing:.12em;white-space:normal;}
+    .logo-en{font-size:.68rem;letter-spacing:.22em;}
     .nav-links{gap:20px;font-size:.78rem;}
   }
+
   .work-hero{position:relative;width:100%;height:62vh;min-height:380px;overflow:hidden;background:#111;}
   .work-hero-slides{position:absolute;inset:0;}
   .work-hero-slide{position:absolute;inset:0;background-size:cover;background-position:center;
@@ -77,9 +94,22 @@
   .about-grid{display:grid;grid-template-columns:1fr;gap:40px;}
   @media(min-width:820px){.about-grid{grid-template-columns:1.2fr 1fr;gap:60px;}}
   .about-grid p{color:var(--fg-dim);margin-bottom:16px;font-weight:300;}
-  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+
+  /* ===== 右侧：三个数字 + 设计院简介（上下排列） ===== */
+  .stats{display:flex;flex-direction:column;gap:26px;}
+  .stats-numbers{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
   .stat b{display:block;font-size:clamp(1.5rem,3vw,2.2rem);color:var(--fg);font-weight:400;line-height:1.2;}
   .stat small{color:var(--fg-dim);font-size:.7rem;letter-spacing:.08em;font-weight:300;display:block;margin-top:4px;}
+  .stats-intro{font-size:.78rem;line-height:1.75;color:var(--fg-dim);font-weight:300;
+    border-top:1px solid var(--line);padding-top:22px;}
+  .stats-intro p{margin-bottom:12px;}
+  .stats-intro p:last-child{margin-bottom:0;}
+
+  @media(max-width:768px){
+    .stats-numbers{grid-template-columns:1fr;gap:14px;}
+    .stats-intro{font-size:.76rem;line-height:1.7;}
+  }
+
   .services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:24px;}
   .service h4{font-size:.95rem;font-weight:500;margin-bottom:8px;}
   .service p{font-size:.8rem;color:var(--fg-dim);font-weight:300;}
@@ -98,7 +128,10 @@
 <header id="siteHeader">
   <nav class="nav wrap">
     <a class="logo" href="index.html">
-      <span class="logo-cn"><span class="cn-a">立田</span><span class="cn-b">工作室</span></span>
+      <div class="logo-left">
+        <span class="logo-sdadi">SDADI 顺德建筑设计院股份有限公司</span>
+        <span class="logo-cn"><span class="cn-a">立田</span><span class="cn-b">工作室</span></span>
+      </div>
       <span class="logo-en">LITIAN STUDIO</span>
     </a>
     <div class="nav-links">
@@ -317,9 +350,17 @@
 <p>LITIAN STUDIO<br>| LITIAN STUDIO is affiliated with Shunde Architectural Design Institute Co.,Ltd. Our studio upholds respect for local culture and context while expressing the architectural language of the new era.<br>The studio’s major design practices cover the renewal of urban historic districts, corporate headquarters, industrial parks, building renovation, commercial complexes, resort hotels, educational facilities, and other typologies. Its design services cover the entire process from preliminary conceptual planning, architectural design, and interior design to construction implementation, with a focus on the practical details and final outcomes of design in real-world projects.<br>Maintaining a compact studio scale and adopting a flat working structure, we rely on a  responsive design methodology to deliver high-quality, customized professional services for our clients. |</p>
     </div>
     <div class="stats reveal">
-      <div class="stat"><b>60+</b><small>设计院建院历史（年）</small></div>
-      <div class="stat"><b>300+</b><small>设计院工程师</small></div>
-      <div class="stat"><b>380+</b><small>设计院员工总数</small></div>
+      <div class="stats-numbers">
+        <div class="stat"><b>60+</b><small>设计院建院历史（年）</small></div>
+        <div class="stat"><b>300+</b><small>设计院工程师</small></div>
+        <div class="stat"><b>380+</b><small>设计院员工总数</small></div>
+      </div>
+      <div class="stats-intro">
+        <p>佛山市顺德建筑设计院股份有限公司创立于1958年，于1993年率先在国内改制组建成有限责任公司，于2018年以发起设立的方式，将公司整体变更为股份有限公司，是国家建设部核定的建筑行业甲级设计院。</p>
+        <p>拥有国家级专家、中、高级、正高级职称及注册建筑师、注册结构工程师、注册设备工程师、注册城市规划师、注册岩土工程师、注册消防工程师、注册造价工程师、注册咨询工程师。公司配套完善，技术力量雄厚，员工近380人。</p>
+        <p>Founded in 1958, Shunde Architectural Design Institute Co., Ltd. took the lead in restructuring into a limited liability company in China in 1993. In 2018, through incorporation by sponsorship, the company was converted into a joint-stock limited company on an overall basis. It is a Grade A design institute in the architectural industry accredited by the Ministry of Housing and Urban-Rural Development of the People's Republic of China.</p>
+        <p>The company boasts a professional team including national-level experts, professionals with intermediate, senior and professor-level professional titles, as well as registered architects, registered structural engineers, registered mechanical and electrical engineers, registered urban planners, registered geotechnical engineers, registered fire protection engineers, registered cost engineers and registered consulting engineers. With complete supporting facilities and strong technical strength, the company has a workforce of nearly 380 employees.</p>
+      </div>
     </div>
   </div>
 </section>
