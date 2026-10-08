@@ -25,11 +25,8 @@
   .nav{display:flex;align-items:center;justify-content:space-between;height:80px;}
   .logo{display:block;text-decoration:none;}
   .logo-left{display:flex;flex-direction:column;line-height:1.1;}
-  .logo-sdadi{
-    font-size:.7rem;font-weight:400;letter-spacing:.16em;
-    color:rgba(255,255,255,.6);
-    margin-bottom:5px;white-space:nowrap;transition:color .4s;
-  }
+  .logo-sdadi{font-size:.7rem;font-weight:400;letter-spacing:.16em;
+    color:rgba(255,255,255,.6);margin-bottom:5px;white-space:nowrap;transition:color .4s;}
   .logo-row{display:flex;align-items:baseline;gap:12px;}
   .logo-cn{font-weight:600;line-height:1.05;color:#ffffff;transition:color .4s;font-size:1.15rem;}
   .logo-cn .cn-a,.logo-cn .cn-b{display:inline;}
@@ -47,7 +44,6 @@
     .nav{flex-direction:column;align-items:stretch;height:auto;padding:12px 0 10px;gap:10px;}
     .logo{width:100%;font-size:1.05rem;}
     .logo-row{justify-content:space-between;gap:8px;}
-    .logo-cn .cn-a,.logo-cn .cn-b{display:inline;}
     .logo-cn{line-height:1.05;font-size:1rem;}
     .logo-sdadi{font-size:.6rem;letter-spacing:.12em;white-space:normal;}
     .logo-en{font-size:.68rem;letter-spacing:.22em;}
@@ -86,68 +82,28 @@
 
   /* ===== 关于我们 ===== */
   .about{background:#f8f8f8;border-block:1px solid var(--line);}
-
-  .about-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-start;
-    gap:40px;
-    flex-wrap:wrap;
-    margin-bottom:50px;
-  }
-  .about-header h2{
-    font-size:clamp(1.2rem,2.4vw,1.7rem);
-    font-weight:400;
-    letter-spacing:-.01em;
-    margin:0;
-    line-height:1.2;
-  }
-  .stats-numbers{
-    display:grid;
-    grid-template-columns:repeat(3,auto);
-    gap:44px;
-    align-items:flex-start;
-  }
+  .about-header{display:flex;justify-content:space-between;align-items:flex-start;
+    gap:40px;flex-wrap:wrap;margin-bottom:56px;}
+  .about-header h2{font-size:clamp(1.2rem,2.4vw,1.7rem);font-weight:400;
+    letter-spacing:-.01em;margin:0;line-height:1.2;}
+  .stats-numbers{display:grid;grid-template-columns:repeat(3,auto);gap:44px;align-items:flex-start;}
   .stat b{display:block;font-size:clamp(1.2rem,2.2vw,1.7rem);color:var(--fg);font-weight:400;line-height:1.2;}
   .stat small{color:var(--fg-dim);font-size:.68rem;letter-spacing:.06em;font-weight:300;display:block;margin-top:4px;}
 
-  /* ===== 每个机构一行：中文左、英文右 ===== */
-  .org-row{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    column-gap:70px;
-    margin-bottom:56px;
-  }
-  .org-row:last-child{margin-bottom:0;}
+  /* ===== 两行两列：每行一个机构，中文左、英文右 ===== */
+  .org-list{display:flex;flex-direction:column;gap:60px;}
 
-  .org-cell{}
-
-  .org-name{
-    color:var(--fg);
-    font-size:.95rem;
-    font-weight:400;
-    line-height:1.5;
-    margin-bottom:14px;
-  }
-  .org-text{
-    color:var(--fg-dim);
-    font-size:.92rem;
-    line-height:1.75;
-    font-weight:400;
-  }
+  .org-row{display:grid;grid-template-columns:1fr 1fr;column-gap:70px;}
+  .org-name{color:var(--fg);font-size:.95rem;font-weight:400;line-height:1.5;margin-bottom:14px;}
+  .org-text{color:var(--fg-dim);font-size:.92rem;line-height:1.75;font-weight:400;}
   .org-text p{margin-bottom:14px;}
   .org-text p:last-child{margin-bottom:0;}
 
   @media(max-width:768px){
-    .about-header{flex-direction:column;gap:26px;margin-bottom:36px;}
+    .about-header{flex-direction:column;gap:26px;margin-bottom:40px;}
     .stats-numbers{grid-template-columns:repeat(3,1fr);gap:16px;width:100%;}
-    /* 手机端：每行内上下堆叠 */
-    .org-row{
-      grid-template-columns:1fr;
-      row-gap:22px;
-      margin-bottom:40px;
-    }
-    .org-name{margin-bottom:10px;}
+    .org-list{gap:40px;}
+    .org-row{grid-template-columns:1fr;row-gap:26px;}
   }
 
   .services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:24px;}
@@ -206,8 +162,7 @@
   <div class="meta">
     <div class="cat">办公 | 产业园区 · 已建成</div>
     <h3>申菱二基地</h3>
-    <div class="title-en">Shenling BASE-II</div>
-    <div class="award">🏆 零能耗建筑，LEED铂金级建筑，广东省土木工程詹天佑故乡杯奖项</div>
+    <div class="title-en">Shenling BASE-II</div><div class="award">🏆 零能耗建筑，LEED铂金级建筑，广东省土木工程詹天佑故乡杯奖项</div>
     <div class="sum">以绿色工厂与零碳园区为目标，整合建筑、结构、幕墙、室内与景观一体化设计，打造LEED铂金级、零能耗的产业园区。</div>
   </div>
 </div>
@@ -217,7 +172,6 @@
     <div class="cat">办公 | 产业园区 · 在建中</div>
     <h3>申菱总部改造</h3>
     <div class="title-en">Shenling BASE-I Headquarter Renovation</div>
-    
     <div class="sum">申菱总部整体改造，打造科技、绿色、零碳新总部园区</div>
   </div>
 </div>
@@ -227,7 +181,6 @@
     <div class="cat">旧建筑改造活化 · 已建成</div>
     <h3>艺华园</h3>
     <div class="title-en">Yihua Garden</div>
-    
     <div class="sum">乡村旧建筑活动改造为新式商业文化空间</div>
   </div>
 </div>
@@ -237,7 +190,6 @@
     <div class="cat">旧建筑改造活化 · 已建成</div>
     <h3>杏坛大三巴</h3>
     <div class="title-en">Xingtan Memorial Arch</div>
-    
     <div class="sum">乡村旧建筑活化改造为村居聚集文化空间</div>
   </div>
 </div>
@@ -247,7 +199,6 @@
     <div class="cat">旧建筑改造活化 · 方案深化</div>
     <h3>顺德文化馆修缮活化</h3>
     <div class="title-en">Shunde Cultural Center Renovation</div>
-    
     <div class="sum">中心城区重要历史建筑改造为新式商业文化空间</div>
   </div>
 </div>
@@ -256,8 +207,7 @@
   <div class="meta">
     <div class="cat">办公 | 产业园区 · 已建成</div>
     <h3>申菱三基地</h3>
-    <div class="title-en">Shenling BASE-III</div>
-    <div class="award">🏆 LEED铂金级建筑</div>
+    <div class="title-en">Shenling BASE-III</div><div class="award">🏆 LEED铂金级建筑</div>
     <div class="sum">申菱环境第一座LEED铂金级、零能耗的产业园区。</div>
   </div>
 </div>
@@ -267,7 +217,6 @@
     <div class="cat">办公 | 产业园区 · 已建成</div>
     <h3>申菱高州基地</h3>
     <div class="title-en">Shenling Gaozhou BASE</div>
-    
     <div class="sum"></div>
   </div>
 </div>
@@ -277,7 +226,6 @@
     <div class="cat">办公 | 产业园区 · 在建中</div>
     <h3>申菱四基地</h3>
     <div class="title-en">Shenling BASE-Ⅳ</div>
-    
     <div class="sum">紧凑型复合功能产业园区。</div>
   </div>
 </div>
@@ -287,7 +235,6 @@
     <div class="cat">办公 | 产业园区 · 在建中</div>
     <h3>屏荣食品总部基地</h3>
     <div class="title-en">Pingroun Headquarter</div>
-    
     <div class="sum">屏荣食品全球总部基地</div>
   </div>
 </div>
@@ -297,7 +244,6 @@
     <div class="cat">办公 | 产业园区 · 已建成</div>
     <h3>富信科技园区</h3>
     <div class="title-en">Fuxin BASE-II</div>
-    
     <div class="sum">富信科技新一代产业园区。</div>
   </div>
 </div>
@@ -307,7 +253,6 @@
     <div class="cat">旧街区改造活化 · 在建中</div>
     <h3>升平名扬里历史街区-保护与更新</h3>
     <div class="title-en">Renewal of Shengping Mingyangli Historical Block</div>
-    
     <div class="sum">中心城区重要历史街区保护修缮及活化更新</div>
   </div>
 </div>
@@ -316,8 +261,7 @@
   <div class="meta">
     <div class="cat">旧建筑改造活化 · 已建成</div>
     <h3>龙眼文化驿站</h3>
-    <div class="title-en">Longan Cultural Station</div>
-    <div class="award">🏆 佛山市优秀工程勘察设计（传统建筑设计类）一等奖</div>
+    <div class="title-en">Longan Cultural Station</div><div class="award">🏆 佛山市优秀工程勘察设计（传统建筑设计类）一等奖</div>
     <div class="sum">乡村旧建筑活化改造为村居聚集文化空间</div>
   </div>
 </div>
@@ -327,7 +271,6 @@
     <div class="cat">旧建筑改造活化 · 在建中</div>
     <h3>西樵官山墟改造</h3>
     <div class="title-en">Xiqiao Guanshan Xu Renovation</div>
-    
     <div class="sum">乡村旧建筑活化改造为村居文化体育活动空间</div>
   </div>
 </div>
@@ -337,7 +280,6 @@
     <div class="cat">办公 | 产业园区 · 在建中</div>
     <h3>沃特检验集团总部</h3>
     <div class="title-en">WALTEK Headquarter</div>
-    
     <div class="sum">沃特检验集团总部</div>
   </div>
 </div>
@@ -347,7 +289,6 @@
     <div class="cat">办公 | 产业园区 · 在建中</div>
     <h3>远江幕墙总部</h3>
     <div class="title-en">Yuanjiang Headquarter</div>
-    
     <div class="sum">远江幕墙产业园区。</div>
   </div>
 </div></div></div>
@@ -363,35 +304,36 @@
       </div>
     </div>
 
-    <!-- 第一行：设计院（中文左、英文右） -->
-    <div class="org-row reveal">
-      <div class="org-cell">
-        <div class="org-name">顺德建筑设计院股份有限公司</div>
-        <div class="org-text">
-          <p>| 佛山市顺德建筑设计院股份有限公司创立于1958年，是国家建设部核定的建筑行业甲级设计院。公司拥有国家级专家、中高级及正高级职称人员，以及注册建筑师、结构工程师、设备工程师、城市规划师、岩土工程师、消防工程师、造价工程师、咨询工程师等各类注册专业人员，员工近380人。</p>
+    <div class="org-list reveal">
+      <!-- 第一行：设计院 -->
+      <div class="org-row">
+        <div>
+          <div class="org-name">顺德建筑设计院股份有限公司</div>
+          <div class="org-text"><p>| 佛山市顺德建筑设计院股份有限公司创立于1958年，是国家建设部核定的建筑行业甲级设计院。公司拥有国家级专家、中高级及正高级职称人员，以及注册建筑师、结构工程师、设备工程师、城市规划师、岩土工程师、消防工程师、造价工程师、咨询工程师等各类注册专业人员，员工近380人。</p></div>
+        </div>
+        <div>
+          <div class="org-name">Shunde Architectural Design Institute Co., Ltd. (SDADI)</div>
+          <div class="org-text"><p>| Founded in 1958, Shunde Architectural Design Institute Co., Ltd. is a Grade A design institute accredited by the Ministry of Housing and Urban-Rural Development of the PRC. The company has a professional team of nearly 380 employees, including national-level experts, professionals with intermediate to professor-level titles, and registered architects, structural engineers, MEP engineers, urban planners, geotechnical engineers, fire protection engineers, cost engineers and consulting engineers.</p></div>
         </div>
       </div>
-      <div class="org-cell">
-        <div class="org-name">Shunde Architectural Design Institute Co., Ltd. (SDADI)</div>
-        <div class="org-text">
-          <p>| Founded in 1958, Shunde Architectural Design Institute Co., Ltd. is a Grade A design institute accredited by the Ministry of Housing and Urban-Rural Development of the PRC. The company has a professional team of nearly 380 employees, including national-level experts, professionals with intermediate to professor-level titles, and registered architects, structural engineers, MEP engineers, urban planners, geotechnical engineers, fire protection engineers, cost engineers and consulting engineers.</p>
-        </div>
-      </div>
-    </div>
 
-    <!-- 第二行：工作室（中文左、英文右） -->
-    <div class="org-row reveal">
-      <div class="org-cell">
-        <div class="org-name"></div>
-        <div class="org-text">
-          <p>立田工作室<br>| 本工作室背靠顺德建筑设计院股份有限公司，是一个尊重本土文化与语境，并呈现新时代建筑语言的建筑工作室。<br>工作室主要设计领域包括公司总部园区、建筑改造、城市历史街区更新商业综合体、度假酒店、学校建筑等，设计内容囊括规划设计、建筑设计、室内设计的前期概念方案到施工落地，专注设计在实际项目中的落地细节与效果。<br>目前我们保持小型工作室的规模，采用扁平化的工作方式，依托严谨且适时而动的设计方法，为客户提供高品质定制化的专业服务。|</p>
-<p>LITIAN STUDIO<br>| LITIAN STUDIO is affiliated with Shunde Architectural Design Institute Co.,Ltd. Our studio upholds respect for local culture and context while expressing the architectural language of the new era.<br>The studio’s major design practices cover the renewal of urban historic districts, corporate headquarters, industrial parks, building renovation, commercial complexes, resort hotels, educational facilities, and other typologies. Its design services cover the entire process from preliminary conceptual planning, architectural design, and interior design to construction implementation, with a focus on the practical details and final outcomes of design in real-world projects.<br>Maintaining a compact studio scale and adopting a flat working structure, we rely on a  responsive design methodology to deliver high-quality, customized professional services for our clients. |</p>
+      <!-- 第二行：立田工作室 -->
+      <div class="org-row">
+        <div>
+          <div class="org-name">立田工作室</div>
+          <div class="org-text">
+            <p>| 本工作室背靠顺德建筑设计院股份有限公司，是一个尊重本土文化与语境，并呈现新时代建筑语言的建筑工作室。</p>
+            <p>工作室主要设计领域包括公司总部园区、建筑改造、城市历史街区更新商业综合体、度假酒店、学校建筑等，设计内容囊括规划设计、建筑设计、室内设计的前期概念方案到施工落地，专注设计在实际项目中的落地细节与效果。</p>
+            <p>目前我们保持小型工作室的规模，采用扁平化的工作方式，依托严谨且适时而动的设计方法，为客户提供高品质定制化的专业服务。|</p>
+          </div>
         </div>
-      </div>
-      <div class="org-cell">
-        <div class="org-name"></div>
-        <div class="org-text">
-          
+        <div>
+          <div class="org-name">LITIAN STUDIO</div>
+          <div class="org-text">
+            <p>| LITIAN STUDIO is affiliated with Shunde Architectural Design Institute Co.,Ltd. Our studio upholds respect for local culture and context while expressing the architectural language of the new era.</p>
+            <p>The studio's major design practices cover the renewal of urban historic districts, corporate headquarters, industrial parks, building renovation, commercial complexes, resort hotels, educational facilities, and other typologies. Its design services cover the entire process from preliminary conceptual planning, architectural design, and interior design to construction implementation, with a focus on the practical details and final outcomes of design in real-world projects.</p>
+            <p>Maintaining a compact studio scale and adopting a flat working structure, we rely on a responsive design methodology to deliver high-quality, customized professional services for our clients.|</p>
+          </div>
         </div>
       </div>
     </div>
