@@ -24,19 +24,16 @@
     backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);}
   .nav{display:flex;align-items:center;justify-content:space-between;height:80px;}
 
-  /* ===== 顶部栏 logo：上下两行（SDADI + 立田工作室）+ 右侧 LITIAN STUDIO ===== */
-  .logo{display:flex;align-items:center;gap:14px;text-decoration:none;}
+  /* ===== 顶部栏 logo：SDADI 在上，立田工作室 + LITIAN STUDIO 在下一行紧贴 ===== */
+  .logo{display:block;text-decoration:none;}
   .logo-left{display:flex;flex-direction:column;line-height:1.1;}
   .logo-sdadi{
-    font-size:.7rem;
-    font-weight:400;
-    letter-spacing:.16em;
+    font-size:.7rem;font-weight:400;letter-spacing:.16em;
     color:rgba(255,255,255,.6);
-    margin-bottom:3px;
-    white-space:nowrap;
-    transition:color .4s;
+    margin-bottom:5px;white-space:nowrap;transition:color .4s;
   }
-  .logo-cn{font-weight:600;line-height:1.05;color:#ffffff;transition:color .4s;font-size:1.1rem;}
+  .logo-row{display:flex;align-items:baseline;gap:10px;}
+  .logo-cn{font-weight:600;line-height:1.05;color:#ffffff;transition:color .4s;font-size:1.15rem;}
   .logo-cn .cn-a,.logo-cn .cn-b{display:inline;}
   .logo-en{font-size:.8rem;letter-spacing:.28em;color:rgba(255,255,255,.8);
     font-weight:400;text-transform:uppercase;transition:color .4s;}
@@ -52,9 +49,10 @@
 
   @media(max-width:768px){
     .nav{flex-direction:column;align-items:stretch;height:auto;padding:12px 0 10px;gap:10px;}
-    .logo{width:100%;justify-content:space-between;font-size:1.05rem;gap:10px;}
-    .logo-left .logo-cn .cn-a,.logo-left .logo-cn .cn-b{display:block;}
-    .logo-left .logo-cn{line-height:1.05;font-size:1rem;}
+    .logo{width:100%;font-size:1.05rem;}
+    .logo-row{justify-content:space-between;}
+    .logo-cn .cn-a,.logo-cn .cn-b{display:inline;}
+    .logo-cn{line-height:1.05;font-size:1rem;}
     .logo-sdadi{font-size:.6rem;letter-spacing:.12em;white-space:normal;}
     .logo-en{font-size:.68rem;letter-spacing:.22em;}
     .nav-links{gap:20px;font-size:.78rem;}
@@ -95,19 +93,20 @@
   @media(min-width:820px){.about-grid{grid-template-columns:1.2fr 1fr;gap:60px;}}
   .about-grid p{color:var(--fg-dim);margin-bottom:16px;font-weight:300;}
 
-  /* ===== 右侧：三个数字 + 设计院简介（上下排列） ===== */
+  /* ===== 右侧：三个数字 + 设计院简介（字体、行高与左侧一致） ===== */
   .stats{display:flex;flex-direction:column;gap:26px;}
   .stats-numbers{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
   .stat b{display:block;font-size:clamp(1.5rem,3vw,2.2rem);color:var(--fg);font-weight:400;line-height:1.2;}
   .stat small{color:var(--fg-dim);font-size:.7rem;letter-spacing:.08em;font-weight:300;display:block;margin-top:4px;}
-  .stats-intro{font-size:.78rem;line-height:1.75;color:var(--fg-dim);font-weight:300;
-    border-top:1px solid var(--line);padding-top:22px;}
-  .stats-intro p{margin-bottom:12px;}
+  /* 设计院简介：样式与左侧 .about-grid p 一致 */
+  .stats-intro{color:var(--fg-dim);font-weight:300;line-height:1.7;
+    border-top:1px solid var(--line);padding-top:26px;}
+  .stats-intro p{margin-bottom:16px;}
   .stats-intro p:last-child{margin-bottom:0;}
 
   @media(max-width:768px){
     .stats-numbers{grid-template-columns:1fr;gap:14px;}
-    .stats-intro{font-size:.76rem;line-height:1.7;}
+    .stats-intro{padding-top:22px;}
   }
 
   .services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:24px;}
@@ -130,9 +129,11 @@
     <a class="logo" href="index.html">
       <div class="logo-left">
         <span class="logo-sdadi">SDADI 顺德建筑设计院股份有限公司</span>
-        <span class="logo-cn"><span class="cn-a">立田</span><span class="cn-b">工作室</span></span>
+        <div class="logo-row">
+          <span class="logo-cn"><span class="cn-a">立田</span><span class="cn-b">工作室</span></span>
+          <span class="logo-en">LITIAN STUDIO</span>
+        </div>
       </div>
-      <span class="logo-en">LITIAN STUDIO</span>
     </a>
     <div class="nav-links">
       <a href="index.html">首页</a>
