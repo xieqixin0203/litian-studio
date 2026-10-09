@@ -24,26 +24,32 @@
     backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);}
   .nav{display:flex;align-items:center;justify-content:space-between;height:80px;}
 
-  /* ===== 顶部 logo：两行严格左右对齐 ===== */
+  /* ===== 顶部 logo：两行左右都对严对齐 ===== */
   .logo{display:block;text-decoration:none;}
   .logo-left{
     display:inline-grid;
-    grid-template-columns:max-content;
-    gap:5px;
-    align-items:center;
+    grid-template-columns:1fr;
+    gap:6px;
   }
   .logo-line{
     display:flex;
-    justify-content:space-between;
+    justify-content:space-between;    /* 两端对齐，左右都齐 */
     align-items:baseline;
-    gap:24px;
+    gap:14px;
   }
-  .logo-prefix,
+  .logo-prefix{
+    font-size:.85rem;                  /* SDADI 单独加大字号 */
+    font-weight:500;
+    letter-spacing:.35em;              /* 字距拉宽，占据更多空间 */
+    color:rgba(255,255,255,.65);
+    white-space:nowrap;
+    transition:color .4s;
+  }
   .logo-sdadi{
     font-size:.72rem;
     font-weight:400;
     letter-spacing:.22em;
-    color:rgba(255,255,255,.6);
+    color:rgba(255,255,255,.65);
     white-space:nowrap;
     transition:color .4s;
   }
@@ -67,7 +73,8 @@
     .logo{width:100%;font-size:1.05rem;}
     .logo-left{width:100%;}
     .logo-line{justify-content:space-between;gap:10px;}
-    .logo-prefix,.logo-sdadi{font-size:.6rem;letter-spacing:.12em;white-space:normal;}
+    .logo-prefix{font-size:.7rem;letter-spacing:.22em;white-space:normal;}
+    .logo-sdadi{font-size:.6rem;letter-spacing:.1em;white-space:normal;}
     .logo-cn{line-height:1.05;font-size:1rem;}
     .logo-en{font-size:.68rem;letter-spacing:.22em;}
     .nav-links{gap:20px;font-size:.78rem;}
