@@ -24,32 +24,32 @@
     backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);}
   .nav{display:flex;align-items:center;justify-content:space-between;height:80px;}
 
-  /* ===== 顶部 logo：两行左右对齐 ===== */
+  /* ===== 顶部 logo：两行严格左右对齐 ===== */
   .logo{display:block;text-decoration:none;}
   .logo-left{
-    display:inline-flex;
-    flex-direction:column;
+    display:inline-grid;
+    grid-template-columns:max-content;
     gap:5px;
-    align-items:stretch;
+    align-items:center;
   }
   .logo-line{
     display:flex;
     justify-content:space-between;
     align-items:baseline;
-    gap:20px;
+    gap:24px;
   }
   .logo-prefix,
   .logo-sdadi{
-    font-size:.7rem;
+    font-size:.72rem;
     font-weight:400;
-    letter-spacing:.16em;
+    letter-spacing:.22em;
     color:rgba(255,255,255,.6);
     white-space:nowrap;
     transition:color .4s;
   }
-  .logo-cn{font-weight:600;line-height:1.05;color:#ffffff;transition:color .4s;font-size:1.15rem;}
+  .logo-cn{font-weight:600;line-height:1.05;color:#ffffff;transition:color .4s;font-size:1.2rem;}
   .logo-cn .cn-a,.logo-cn .cn-b{display:inline;}
-  .logo-en{font-size:.8rem;letter-spacing:.28em;color:rgba(255,255,255,.8);
+  .logo-en{font-size:.82rem;letter-spacing:.3em;color:rgba(255,255,255,.8);
     font-weight:400;text-transform:uppercase;transition:color .4s;}
   header.scrolled .logo-prefix,
   header.scrolled .logo-sdadi{color:var(--fg-dim);}
@@ -67,7 +67,7 @@
     .logo{width:100%;font-size:1.05rem;}
     .logo-left{width:100%;}
     .logo-line{justify-content:space-between;gap:10px;}
-    .logo-prefix,.logo-sdadi{font-size:.6rem;letter-spacing:.1em;white-space:normal;}
+    .logo-prefix,.logo-sdadi{font-size:.6rem;letter-spacing:.12em;white-space:normal;}
     .logo-cn{line-height:1.05;font-size:1rem;}
     .logo-en{font-size:.68rem;letter-spacing:.22em;}
     .nav-links{gap:20px;font-size:.78rem;}
