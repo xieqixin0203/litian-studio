@@ -68,7 +68,6 @@
   header.scrolled .nav-links a{color:var(--fg-dim);}
   header.scrolled .nav-links a:hover{color:var(--fg);}
 
-  /* ===== 手机端：文字左对齐、两两相邻 ===== */
   @media(max-width:768px){
     .nav{flex-direction:column;align-items:stretch;height:auto;padding:12px 0 10px;gap:10px;}
     .logo{width:100%;font-size:1.05rem;}
@@ -77,11 +76,11 @@
       flex-direction:column;
       gap:4px;
       align-items:flex-start;
-      width:auto;                /* 不再撑满，宽度由内容决定 */
+      width:auto;
     }
     .logo-line{
-      justify-content:flex-start;  /* 关键：左对齐，不再两端撑开 */
-      gap:6px;                     /* 两字之间固定小间距 */
+      justify-content:flex-start;
+      gap:6px;
     }
     .logo-prefix{font-size:.7rem;letter-spacing:.2em;white-space:normal;}
     .logo-sdadi{font-size:.62rem;letter-spacing:.08em;white-space:normal;}
@@ -90,11 +89,22 @@
     .nav-links{gap:20px;font-size:.78rem;}
   }
 
+  /* ===== 内容页顶部轮播：更自然的淡入 + 缓慢缩放 ===== */
   .work-hero{position:relative;width:100%;height:62vh;min-height:380px;overflow:hidden;background:#111;}
   .work-hero-slides{position:absolute;inset:0;}
-  .work-hero-slide{position:absolute;inset:0;background-size:cover;background-position:center;
-    opacity:0;transition:opacity 1.8s ease-in-out;}
-  .work-hero-slide.active{opacity:1;}
+  .work-hero-slide{
+    position:absolute;inset:0;
+    background-size:cover;background-position:center;
+    opacity:0;
+    transform:scale(1.08);                     /* 初始放大 8% */
+    transition:opacity 2.6s cubic-bezier(0.4, 0, 0.2, 1),
+               transform 10s ease-out;         /* 缓慢缩回正常大小，形成 Ken Burns 效果 */
+    will-change:opacity, transform;
+  }
+  .work-hero-slide.active{
+    opacity:1;
+    transform:scale(1);                        /* 淡入完成后回到正常比例 */
+  }
   .work-hero::before{content:"";position:absolute;inset:0;z-index:1;
     background:linear-gradient(180deg,rgba(0,0,0,.25) 0%,transparent 35%,transparent 55%,rgba(0,0,0,.55) 100%);}
   .work-hero-tagline{position:absolute;bottom:6%;left:0;right:0;z-index:2;text-align:center;
@@ -121,7 +131,6 @@
   .meta .award{font-size:.78rem;color:#b8860b;letter-spacing:.02em;margin-bottom:8px;font-weight:400;}
   .meta .sum{font-size:.85rem;color:var(--fg-dim);line-height:1.6;font-weight:300;}
 
-  /* ===== 关于我们 ===== */
   .about{background:#f8f8f8;border-block:1px solid var(--line);}
   .about-header{display:flex;justify-content:space-between;align-items:flex-start;
     gap:40px;flex-wrap:wrap;margin-bottom:56px;}
@@ -156,7 +165,11 @@
     display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-weight:300;}
   .reveal{opacity:0;transform:translateY(20px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1);}
   .reveal.visible{opacity:1;transform:none;}
-  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;}html{scroll-behavior:auto;}}
+  @media(prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;}
+    html{scroll-behavior:auto;}
+    .work-hero-slide{transition:opacity 0.6s ease;transform:none;}
+  }
 </style>
 </head>
 <body>
@@ -428,7 +441,7 @@
     setInterval(() => {
       workIdx = (workIdx + 1) % workSlides.length;
       showWorkSlide(workIdx);
-    }, 3500);
+    }, 5000);
   }
 
   function updateGalleryHrefs() {
@@ -461,7 +474,6 @@
     link.addEventListener('mouseenter', preload, {once:true, passive:true});
   });
 
-  // defer 加载后 SimpleLightbox 才会定义
   window.addEventListener('load', () => {
     if (typeof SimpleLightbox !== 'undefined') {
       new SimpleLightbox('.gallery-link', {
