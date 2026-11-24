@@ -68,6 +68,7 @@
   header.scrolled .nav-links a{color:var(--fg-dim);}
   header.scrolled .nav-links a:hover{color:var(--fg);}
 
+  /* ===== 手机端：文字左对齐、两两相邻 ===== */
   @media(max-width:768px){
     .nav{flex-direction:column;align-items:stretch;height:auto;padding:12px 0 10px;gap:10px;}
     .logo{width:100%;font-size:1.05rem;}
@@ -76,11 +77,11 @@
       flex-direction:column;
       gap:4px;
       align-items:flex-start;
-      width:auto;
+      width:auto;                /* 不再撑满，宽度由内容决定 */
     }
     .logo-line{
-      justify-content:flex-start;
-      gap:6px;
+      justify-content:flex-start;  /* 关键：左对齐，不再两端撑开 */
+      gap:6px;                     /* 两字之间固定小间距 */
     }
     .logo-prefix{font-size:.7rem;letter-spacing:.2em;white-space:normal;}
     .logo-sdadi{font-size:.62rem;letter-spacing:.08em;white-space:normal;}
@@ -89,22 +90,13 @@
     .nav-links{gap:20px;font-size:.78rem;}
   }
 
-  /* ===== 内容页顶部轮播：更自然的淡入 + 缓慢缩放 ===== */
   .work-hero{position:relative;width:100%;height:62vh;min-height:380px;overflow:hidden;background:#111;}
   .work-hero-slides{position:absolute;inset:0;}
-  .work-hero-slide{
-    position:absolute;inset:0;
-    background-size:cover;background-position:center;
-    opacity:0;
-    transform:scale(1.08);                     /* 初始放大 8% */
-    transition:opacity 2.6s cubic-bezier(0.4, 0, 0.2, 1),
-               transform 10s ease-out;         /* 缓慢缩回正常大小，形成 Ken Burns 效果 */
-    will-change:opacity, transform;
-  }
-  .work-hero-slide.active{
-    opacity:1;
-    transform:scale(1);                        /* 淡入完成后回到正常比例 */
-  }
+  .work-hero-slide{position:absolute;inset:0;background-size:cover;background-position:center;
+    opacity:0;transform:scale(1.08);
+    transition:opacity 2.6s cubic-bezier(0.4,0,0.2,1),transform 10s ease-out;
+    will-change:opacity,transform;}
+  .work-hero-slide.active{opacity:1;transform:scale(1);}
   .work-hero::before{content:"";position:absolute;inset:0;z-index:1;
     background:linear-gradient(180deg,rgba(0,0,0,.25) 0%,transparent 35%,transparent 55%,rgba(0,0,0,.55) 100%);}
   .work-hero-tagline{position:absolute;bottom:6%;left:0;right:0;z-index:2;text-align:center;
@@ -131,6 +123,7 @@
   .meta .award{font-size:.78rem;color:#b8860b;letter-spacing:.02em;margin-bottom:8px;font-weight:400;}
   .meta .sum{font-size:.85rem;color:var(--fg-dim);line-height:1.6;font-weight:300;}
 
+  /* ===== 关于我们 ===== */
   .about{background:#f8f8f8;border-block:1px solid var(--line);}
   .about-header{display:flex;justify-content:space-between;align-items:flex-start;
     gap:40px;flex-wrap:wrap;margin-bottom:56px;}
@@ -165,11 +158,7 @@
     display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-weight:300;}
   .reveal{opacity:0;transform:translateY(20px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1);}
   .reveal.visible{opacity:1;transform:none;}
-  @media(prefers-reduced-motion:reduce){
-    .reveal{opacity:1;transform:none;}
-    html{scroll-behavior:auto;}
-    .work-hero-slide{transition:opacity 0.6s ease;transform:none;}
-  }
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;}html{scroll-behavior:auto;}.work-hero-slide{transition:opacity .6s ease;transform:none;}}
 </style>
 </head>
 <body>
@@ -375,16 +364,16 @@
         <div>
           <div class="org-name">立田工作室</div>
           <div class="org-text">
-            <p>| 本工作室背靠顺德建筑设计院股份有限公司，是一个尊重本土文化与语境，并呈现新时代建筑语言的建筑工作室。</p>
-            <p>工作室主要设计领域包括公司总部园区、建筑改造、城市历史街区更新商业综合体、度假酒店、学校建筑等，设计内容囊括规划设计、建筑设计、室内设计的前期概念方案到施工落地，专注设计在实际项目中的落地细节与效果。</p>
+            <p>| 本工作室背靠顺德建筑设计院股份有限公司，由董事长及总建筑师陈霖峰发起并担任本工作室的建筑设计总顾问。是一个尊重本土文化与语境，并呈现新时代建筑语言的建筑工作室。</p>
+            <p>工作室主要设计领域包括公司总部园区、建筑改造、城市历史街区更新商业综合体、度假酒店、学校建筑等，设计内容囊括规划设计、建筑设计、室内设计的前期概念方案到施工落地，专注原创方案设计以及项目中的实际落地细节与效果。</p>
             <p>目前我们保持小型工作室的规模，采用扁平化的工作方式，依托严谨且适时而动的设计方法，为客户提供高品质定制化的专业服务。|</p>
           </div>
         </div>
         <div>
           <div class="org-name">LITIAN STUDIO</div>
           <div class="org-text">
-            <p>| LITIAN STUDIO is affiliated with Shunde Architectural Design Institute Co.,Ltd. Our studio upholds respect for local culture and context while expressing the architectural language of the new era.</p>
-            <p>The studio's major design practices cover the renewal of urban historic districts, corporate headquarters, industrial parks, building renovation, commercial complexes, resort hotels, educational facilities, and other typologies. Its design services cover the entire process from preliminary conceptual planning, architectural design, and interior design to construction implementation, with a focus on the practical details and final outcomes of design in real-world projects.</p>
+            <p>| LITIAN STUDIO is affiliated with Shunde Architectural Design Institute Co., Ltd. It was initiated by Mr. Chen Linfeng, Chairman and Chief Architect of SDADI, who also serves as the studio's Chief Architectural Design Advisor. The studio upholds respect for local culture and context while expressing the architectural language of the new era.</p>
+            <p>The studio's major design practices cover the renewal of urban historic districts, corporate headquarters, industrial parks, building renovation, commercial complexes, resort hotels, educational facilities, and other typologies. Its design services cover the entire process from preliminary conceptual planning, architectural design, and interior design to construction implementation, with a focus on original conceptual design and the practical details and final outcomes of real-world projects.</p>
             <p>Maintaining a compact studio scale and adopting a flat working structure, we rely on a responsive design methodology to deliver high-quality, customized professional services for our clients.|</p>
           </div>
         </div>
@@ -474,6 +463,7 @@
     link.addEventListener('mouseenter', preload, {once:true, passive:true});
   });
 
+  // defer 加载后 SimpleLightbox 才会定义
   window.addEventListener('load', () => {
     if (typeof SimpleLightbox !== 'undefined') {
       new SimpleLightbox('.gallery-link', {
